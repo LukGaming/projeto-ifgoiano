@@ -28,7 +28,15 @@ echo $deleta_usuario;
 $deleta_usuario->deleteUser();*/
 //PRODUTO//
 //Listando todos os produtos
+//PEGANDO ID DOS PRODUTOS
+/*$id_produtos = array();
+$todos_produtos = Produto::getListofProducts();
+foreach ($todos_produtos as $key => $value) {
+    array_push($id_produtos,$value['id_produto']);      
+}
+var_dump($id_produtos);*/
 
+//echo json_encode($todos_produtos['id_produto']);
 if(isset($_GET['getListofProducts'])){
     $getListOfProducts = $_GET['getListofProducts'];
     if($getListOfProducts == 1){
@@ -40,54 +48,61 @@ if(isset($_GET['getListofProducts'])){
     }
 }
 //CADASTRANDO PRODUTO
-if(isset($_POST["createProduct"])){//$countfiles = count($_FILES['files']['name'])
-        $novo_produto = new Produto(
+if(isset($_FILES['files']['name'])){//$countfiles = count($_FILES['files']['name'])
+    $novo_produto = new Produto(
         $_POST['nome'],
         $_POST['qtd_disponivel'],
         $_POST['descricao'],
         $_POST['valor'],
         1   //este é o id do usuário
     );
-    echo $novo_produto->insert();
-}
-        //Count total files
-        $countfiles = count($_FILES['files']['name']);
-
-        // Upload directory
-        $upload_location = "../upload_images/";
-        if(!is_dir($upload_location)){
-            mkdir($upload_location);
-        }
-        // To store uploaded files path
-        $files_arr = array();
-        
-        // Loop all files
-        for($index = 0;$index < $countfiles;$index++){
-        
-        // File name
-        $filename = $_FILES['files']['name'][$index];
-        
-        // Get extension
-        $ext = pathinfo($filename, PATHINFO_EXTENSION);
-        
-        // Valid image extension
-        $valid_ext = array("png","jpeg","jpg");
-        
-        // Check extension
+    $lastId = $novo_produto->insert();
+    //var_dump($_POST['nome']['nome']);
+    //Count total files
+    $countfiles = count($_FILES['files']['name']);
+    // Upload directory
+    $upload_location = "../upload_images/";
+    if(!is_dir($upload_location)){
+        mkdir($upload_location);
+    }
+    // To store uploaded files path
+    $files_arr = array();
+    // Loop all files
+    
+    for($index = 0;$index < $countfiles;$index++){
+    
+    // File name
+    $filename = $_FILES['files']['name'][$index];
+    // Get extension
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    // Valid image extension
+    $valid_ext = array("png","jpeg","jpg");
+    $sql = new Sql();
+    // Check extension
         if(in_array($ext, $valid_ext)){
-        
             // File path
             $path = $upload_location.$filename;
         
             // Upload file
-            if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
-                $files_arr[] = $path;
+            if(move_uploaded_file($_FILES['files']['tmp_name'][$index], $path)){
+                rename($path, $upload_location.DIRECTORY_SEPARATOR.$lastId."-".$index.".png") ;
+                $files_arr[] = $upload_location.DIRECTORY_SEPARATOR.$lastId."-".$index.".png";
+                $sql->query("INSERT INTO imagens(caminho, id_produto) VALUES (:CAMINHO, :ID_PRODUTO)",
+                array(
+                    ":CAMINHO"=>$filename,
+                    ":ID_PRODUTO"=>$lastId,
+                ));
             }
         }
-        }
-        echo json_encode($files_arr);
-        die;
+    }    
+echo json_encode($files_arr);
 
+    
+    
+
+
+}
+        
 
 //Buscando dados somente de um produto pelo ID.
 /*$buscar_produto_id = new Produto();

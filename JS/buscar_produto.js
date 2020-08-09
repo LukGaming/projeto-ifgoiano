@@ -8,12 +8,12 @@ function mostraTodosProdutos() {
     $(ProductElements).empty();
     $.getJSON("../../PHP/index.php",
     "getListofProducts=1",
-        function (data) {            
+        function (data) { 
             data.forEach(item => {
                 $(ProductElements).append(
                     "<div class='div-produto'>"
                     + "<div class='imagem-produto'>"
-                    + "<img src='../images/gtx-970.jpg' width='256'>"
+                    + "<img src='../../upload_images/"+item.id_produto+"-0.png' width='256' height='256'>"
                     + "</div>"
                     + "<div class='dados-produto'>"
                     + "<div class='h3 font-weight-bold'>R$ " + item.valor_produto + "</div>"
@@ -39,7 +39,7 @@ function buscarProdutoPorNome() {
                         $(ProductElements).append(
                             "<div class='div-produto'>"
                             + "<div class='imagem-produto'>"
-                            + "<img src='../images/gtx-970.jpg' width='256'>"
+                            + "<img src='../../upload_images/"+item.id_produto+"-0.png' width='256' height='256'>"
                             + "</div>"
                             + "<div class='dados-produto'>"
                             + "<div class='h3 font-weight-bold'>R$ " + item.valor_produto + "</div>"
@@ -57,4 +57,3 @@ function buscarProdutoPorNome() {
         mostraTodosProdutos();
     }
 }
-

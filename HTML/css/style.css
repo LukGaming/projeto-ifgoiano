@@ -37,8 +37,7 @@
     border-radius: 15px;
 }
 .div-produto{
-    width: 300px;
-    border: 5px;
+    padding: 0;
     color: black;
     background-color: white;
     float: left;

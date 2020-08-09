@@ -59,19 +59,17 @@ $(document).ready(function () {
     }
     var somaConta = count1 + count2 + count3 + count4 + count5;
     if (somaConta == 0) {
-      /*//Enviando os dados para criacao do produto
-      var lastIdInserted = [];
-      $.post("../../PHP/index.php",
-        "createProduct=1"+
-        "&nome=" + nome +
-        "&qtd_disponivel=" + quantidade +
-        "&descricao=" + descricao +
-        "&valor=" + valor+
-        "&form_data="+form_data,
-        function(retorno) {
-          console.log(retorno);
-        }        
-      );*/     
+      ////////////CODIGO DA IMAGEM//////////////
+      for (var index = 0; index < totalfiles; index++) {
+        form_data.append("files[]", document.getElementById('files').files[index]);
+      }
+      var data = [nome,quantidade,descricao,valor];
+      form_data.append("nome", nome);
+      form_data.append("qtd_disponivel", quantidade);
+      form_data.append("descricao", descricao);
+      form_data.append("valor", valor);
+      console.log(form_data);
+      // AJAX request
       $.ajax({
         url: '../../PHP/index.php',
         type: 'post',
@@ -82,12 +80,11 @@ $(document).ready(function () {
         success: function (response) {
           console.log(response);
           for (var index = 0; index < response.length; index++) {
-            console.log(response[index]);
             var src = response[index];
 
             // Add img element in <div id='preview'>
             //Aqui seria onde a imagem seria vista
-            $('#preview').append('<img src="../../' + src + '" width="200px;" height="200px">');
+            $('#preview').append('<img src="../' + src + '" width="200px;" height="200px">');
           }
         }
       });
