@@ -28,26 +28,13 @@ echo $deleta_usuario;
 $deleta_usuario->deleteUser();*/
 //PRODUTO//
 //Listando todos os produtos
-//PEGANDO ID DOS PRODUTOS
-/*$todos_produtos = Produto::getListofProducts();
-        $sql = new Sql();
-        for($i=0;$i<count($todos_produtos); $i++){
-            $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
-                ":ID_PRODUTO"=>$todos_produtos[$i]['id_produto']));
-               $imagem = $consulta[0];
-               $todos_produtos[$i]['imagem'] = $imagem;
-        }
-        echo json_encode($todos_produtos);
-*/
-//echo json_encode($todos_produtos['id_produto']);
 if(isset($_GET['getListofProducts'])){
     $getListOfProducts = $_GET['getListofProducts'];
     if($getListOfProducts == 1){
         $todos_produtos = Produto::getListofProducts();
-        $todos_produtos = Produto::getListofProducts();
         $sql = new Sql();
         for($i=0;$i<count($todos_produtos); $i++){
-            $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
+                $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
                 ":ID_PRODUTO"=>$todos_produtos[$i]['id_produto']));
                $imagem = $consulta[0];
                $todos_produtos[$i]['imagem'] = $imagem;
@@ -124,12 +111,58 @@ if(isset($_FILES['files']['name'])){//$countfiles = count($_FILES['files']['name
     }    
 echo json_encode($files_arr);
 }
-        
+//Buscando dados somente de um produto pelo ID.  
 
-//Buscando dados somente de um produto pelo ID.
-/*$buscar_produto_id = new Produto();
-$buscar_produto_id->getProductById(5);
-echo $buscar_produto_id;*/
+ /*   $buscar_produto_id = new Produto();
+    $retorno = $buscar_produto_id->getProductById(487);
+    if($retorno == 0){
+        echo json_encode(array(
+            "vazio"=>0
+        ));
+    }else{
+        $sql = new Sql();
+        $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
+            ":ID_PRODUTO"=>$buscar_produto_id->getId()));
+        for($i=0; $i<count($consulta); $i++){
+            $retorno['imagem'][$i] = $consulta[$i];
+        }
+        $nome_vendedor = $sql->select("select nome from usuario where id_usuario = :ID_USUARIO",
+        array(
+            "ID_USUARIO"=>$retorno[0]['id_vendedor']
+            ));
+        $retorno['nome_vendedor'] = $nome_vendedor[0]['nome'];
+        echo json_encode($retorno);
+    }*/
+    
+
+
+
+
+
+
+if(isset($_GET['getoneproduct'])){
+    $buscar_produto_id = new Produto();
+    $retorno = $buscar_produto_id->getProductById($_GET['id_produto']);
+    if($retorno == 0){
+        echo json_encode(array(
+            "vazio"=>0
+        ));
+    }else{
+        $sql = new Sql();
+        $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
+            ":ID_PRODUTO"=>$buscar_produto_id->getId()));
+        for($i=0; $i<count($consulta); $i++){
+            $retorno['imagem'][$i] = $consulta[$i];
+        }
+        $nome_vendedor = $sql->select("select nome from usuario where id_usuario = :ID_USUARIO",
+        array(
+            "ID_USUARIO"=>$retorno[0]['id_vendedor']
+            ));
+        $retorno['nome_vendedor'] = $nome_vendedor[0]['nome'];
+        echo json_encode($retorno);
+    }
+}
+
 //Buscando um Produto pelo nome ou Pela descricao do produto
 /*$search_produto = new Produto();
 echo json_encode($search_produto->searchProduto("produto"));*/

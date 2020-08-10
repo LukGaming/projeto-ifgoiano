@@ -54,9 +54,10 @@ class Produto{
         if(count($resultado)>0){
             $row = $resultado[0];
             $this->constructProduto($row);
+            return $resultado;
         }
         else{
-            echo "Produto nao encontrado";
+            return 0;
         }
     }
     static function searchProduto($keyword){

@@ -1,9 +1,4 @@
-<div class='div-produto'>
-                <div class='imagem-produto'>
-                        <img src='../images/gtx-970.jpg' width='256'>                    
-                </div> 
-                <div class='dados-produto'>
-                        <div class='h3 font-weight-bold'>R$ 500,00</div>
-                        <div class='h6 font-weight-bold'>GTX 970 4GB</div>                         
-                </div>                    
-            </div>
+<div class='carousel-item'>
+                                <img class='d-block ' src='../../upload_images/485-1.jpg' alt='Second slide'
+                                    style='height: 390px; width:390px;'>
+                            </div>

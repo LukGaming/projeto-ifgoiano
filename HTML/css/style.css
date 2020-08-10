@@ -101,3 +101,23 @@
 #span-sucesso{
     margin: 5px;
 }
+/*STYLE PARA SOMENTE UM PRODUTO*/
+#borda-imagem-somente-produto{
+    padding: 2px;
+    color: black;
+    background-color: white;
+    float: left;
+    margin: 10px;
+    outline-style: solid;
+    outline-width: 5px;
+    outline-color: black;
+}
+#borda-em-volta-do-produto-todo{
+    color: black;
+    background-color: white;
+    float: left;
+    margin: 10px;
+    outline-style: solid;
+    outline-width: px;
+    outline-color: black;
+}

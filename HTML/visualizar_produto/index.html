@@ -59,38 +59,56 @@
             </ul>
         </div>
     </nav>
-    <section class="container h-auto" id="bg-section" >
-        <article class="container">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                </ol>
-                <div class="carousel-inner" >
-                  <div class="carousel-item active" >
-                    <img class="d-block w-100" src="../../upload_images/451-0.jpg" alt="First slide" style="width: 240px;height: 426px;" >
-                  </div>
-                  <div class="carousel-item" size="360x240">
-                    <img class="d-block w-100" src="../../upload_images/452-0.png" alt="Second slide" style="width: 240px;height: 426px;">
-                  </div>
+    <section class="container h-auto" id="bg-section">
+        <article>
+            <div id='borda-em-volta-do-produto-todo' class='w-auto'>
+                <div id='borda-imagem-somente-produto'>
+                    <div id='carouselExampleControls' class='carousel slide' data-ride='carousel'
+                        style='height: 390px; width:390px;'>
+                        <div class='carousel-inner' id="imagens-carrolsel">
+
+                        </div>
+                        <a class='carousel-control-prev' href='#carouselExampleControls' role='button'
+                            data-slide='prev'>
+                            <span class='carousel-control-prev-icon' aria-hidden='true'></span>
+                            <span class='sr-only'>Previous</span>
+                        </a>
+                        <a class='carousel-control-next' href='#carouselExampleControls' role='button'
+                            data-slide='next'>
+                            <span class='carousel-control-next-icon' aria-hidden='true'></span>
+                            <span class='sr-only'>Next</span>
+                        </a>
+                    </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
+                <div class='h4' style='text-align: left;float:left;padding: 10px;'>
+                    <div class='font-weight-bold'>Nome do Produto:</div>
+                    <div id="nome"></div>
+
+                </div>
+                <div class='h4' style='text-align: left;float:left;padding: 10px;'>
+                    <div class='font-weight-bold'>Valor:</div>
+                    <div id="valor"></div>
+                </div>
+                <div class='h4' style='text-align: left;float:left;padding: 10px;'>
+                    <div class='font-weight-bold'>Quantidade Disponível:</div>
+                    <div id="qtd_disponivel"></div>
+                </div>
+                <div class='h4' style='text-align: left;float:left;padding: 10px;'>
+                    <div class='font-weight-bold'>Vendedor:</div>
+                    <div id="vendedor"></div>
+                </div>
+                <div class='h4' style='text-align: left;float:left;padding: 10px;'>
+                    <div class='font-weight-bold'>Descricão:</div>
+                    <div id="descricao"></div>
+                </div>
         </article>
     </section>
-    <footer class="fixed-bottom">
+    <!--<footer>
         <div id="bg-footer" class="h-auto text-white">
             Lorem ipsum dolor sit amet, suas euismod eam cu, cu maiorum lobortis mea. Cu offendit scaevola inimicus vim,
             ea sed purto
         </div>
-    </footer>
+    </footer>-->
     <div id="suporte-online" onclick="location.href = '../contato_suporte/index.html'"> &reg; Suporte Online</div>
     <!-- JavaScript opcional -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
@@ -105,7 +123,7 @@
         crossorigin="anonymous"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
-    <script src="../../JS/buscar_produto.js"></script>
+    <script src="../../JS/mostrarProduto.js"></script>
 </body>
 
 </html>

@@ -10,7 +10,7 @@ function mostraTodosProdutos() {
         function (data) {
             data.forEach(item => {
                 $(ProductElements).append(
-                    "<a href='../../visualizar_produto/index.html/"+item.id_produto+"' >"
+                     "<a href='../visualizar_produto/index.html?product="+item.id_produto+"' >"
                     +"<div class='div-produto'>"
                     + "<div class='imagem-produto'>"
                     + "<img src='../../upload_images/" +item.imagem.caminho+"' width='256' height='256'>"
@@ -24,7 +24,6 @@ function mostraTodosProdutos() {
                 );
             });
         }
-
     );
 }
 $(inputBuscar).keyup(buscarProdutoPorNome);
