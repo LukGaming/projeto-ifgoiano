@@ -15,7 +15,7 @@
 .menu-waiting{
     background-color: #dd2476;
 }
-#bg-footer{   
+#bg-footer{
     background-color: #5c258d;
     padding: 10px;
 }
@@ -41,7 +41,7 @@
     color: black;
     background-color: white;
     float: left;
-    margin:  10px;
+    margin: 10px;
     outline-style: solid;
     outline-width: 2px;
     outline-color: black;

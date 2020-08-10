@@ -35,12 +35,27 @@ foreach ($todos_produtos as $key => $value) {
     array_push($id_produtos,$value['id_produto']);      
 }
 var_dump($id_produtos);*/
-
+$sql = new Sql();
+$todos_produtos = Produto::getListofProducts();
+    for($i=0;$i<count($todos_produtos); $i++){
+        $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
+            ":ID_PRODUTO"=>$todos_produtos[$i]['id_produto']));
+        $nome_imagem = $consulta[0];
+        $todos_produtos[$i]['imagem'] = $nome_imagem;
+    }
 //echo json_encode($todos_produtos['id_produto']);
 if(isset($_GET['getListofProducts'])){
     $getListOfProducts = $_GET['getListofProducts'];
     if($getListOfProducts == 1){
-        echo json_encode(Produto::getListofProducts());
+        $todos_produtos = Produto::getListofProducts();
+        $sql = new Sql();
+        for($i=0;$i<count($todos_produtos); $i++){
+        $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
+            ":ID_PRODUTO"=>$todos_produtos[$i]['id_produto']));
+        $nome_imagem = $consulta[0];
+        $todos_produtos[$i]['imagem'] = $nome_imagem;
+    }
+        echo json_encode($todos_produtos);
     }
     else{    
         $keyword = $_GET['keyword'];    
@@ -85,22 +100,18 @@ if(isset($_FILES['files']['name'])){//$countfiles = count($_FILES['files']['name
         
             // Upload file
             if(move_uploaded_file($_FILES['files']['tmp_name'][$index], $path)){
-                rename($path, $upload_location.DIRECTORY_SEPARATOR.$lastId."-".$index.".png") ;
-                $files_arr[] = $upload_location.DIRECTORY_SEPARATOR.$lastId."-".$index.".png";
+                $new_file_name = $lastId."-".$index.".".pathinfo($filename, PATHINFO_EXTENSION);
+                rename($path, $upload_location.DIRECTORY_SEPARATOR.$new_file_name);
+                $files_arr[] = $upload_location.DIRECTORY_SEPARATOR.$new_file_name;
                 $sql->query("INSERT INTO imagens(caminho, id_produto) VALUES (:CAMINHO, :ID_PRODUTO)",
                 array(
-                    ":CAMINHO"=>$filename,
+                    ":CAMINHO"=>$new_file_name,
                     ":ID_PRODUTO"=>$lastId,
                 ));
             }
         }
     }    
 echo json_encode($files_arr);
-
-    
-    
-
-
 }
         
 
