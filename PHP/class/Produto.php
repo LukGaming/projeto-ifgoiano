@@ -70,7 +70,7 @@ class Produto{
             return $resultado;
         }
         else{
-            echo "não há produtos relacionados";
+            return array();
         }
     }
     public function update($nome,$qtd_disponivel, $descricao, $valor_produto, $id_vendedor){

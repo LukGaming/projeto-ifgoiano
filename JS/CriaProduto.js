@@ -3,10 +3,11 @@ $(document).ready(function () {
   $('#submit').click(function () {
     var form_data = new FormData();//IMAGEM
     var totalfiles = document.getElementById('files').files.length;//Imagem
-    var nome = $("#nome").val();
-    var quantidade = $("#quantidade").val();
-    var descricao = $("#descricao").val();
-    var valor = $("#valor").val();
+    var input_imagens = document.getElementById('files');
+    var nome = $("#nome");
+    var quantidade = $("#quantidade");
+    var descricao = $("#descricao");
+    var valor = $("#valor");
     var erro_nome = $("#erro-nome");
     var erro_quantidade = $("#erro-quantidade");
     var erro_descricao = $("#erro-descricao");
@@ -17,7 +18,7 @@ $(document).ready(function () {
     var count3 = 0;
     var count4 = 0;
     var count5 = 0;
-    if (nome.length < 4) {
+    if (nome.val().length < 4) {
       erro_nome.html("Nome Invalido");
       count1 = -1;
     }
@@ -25,7 +26,7 @@ $(document).ready(function () {
       erro_nome.html("");
       count1 = 0;
     }
-    if (quantidade == 0) {
+    if (quantidade.val() == 0) {
       count2 = -1;
       erro_quantidade.html("Quantidade Invalida")
     }
@@ -33,7 +34,7 @@ $(document).ready(function () {
       erro_quantidade.html("");
       count2 = 0;
     }
-    if (descricao.length < 4) {
+    if (descricao.val().length < 4) {
       erro_descricao.html("Descricao Invalida");
       count3 = -1
     }
@@ -41,7 +42,7 @@ $(document).ready(function () {
       erro_descricao.html("");
       count3 = 0;
     }
-    if (valor == 0) {
+    if (valor.val() == 0) {
       erro_valor.html("Valor Invalido");
       count4 = -1;
     }
@@ -63,12 +64,11 @@ $(document).ready(function () {
       for (var index = 0; index < totalfiles; index++) {
         form_data.append("files[]", document.getElementById('files').files[index]);
       }
-      var data = [nome,quantidade,descricao,valor];
-      form_data.append("nome", nome);
-      form_data.append("qtd_disponivel", quantidade);
-      form_data.append("descricao", descricao);
-      form_data.append("valor", valor);
-      console.log(form_data);
+      var data = [nome, quantidade, descricao, valor];
+      form_data.append("nome", nome.val());
+      form_data.append("qtd_disponivel", quantidade.val());
+      form_data.append("descricao", descricao.val());
+      form_data.append("valor", valor.val());
       // AJAX request
       $.ajax({
         url: '../../PHP/index.php',
@@ -78,16 +78,27 @@ $(document).ready(function () {
         contentType: false,
         processData: false,
         success: function (response) {
-          console.log(response);
           for (var index = 0; index < response.length; index++) {
             var src = response[index];
-
             // Add img element in <div id='preview'>
             //Aqui seria onde a imagem seria vista
-            $('#preview').append('<img src="../' + src + '" width="200px;" height="200px">');
+            //$('#preview').append('<img src="../' + src + '" width="200px;" height="200px">');
           }
         }
       });
+      nome.val("");
+      quantidade.val("");
+      descricao.val("");
+      valor.val("");
+      input_imagens.value = "";
+      var span_sucesso = $("#span-sucesso");
+      console.log(span_sucesso);
+      span_sucesso.append(
+        "'<div class='alert' role='alert' style='margin-bottom: 5px; background-color: rgb(0, 179, 134)'> "
+        + "Produto Criado com sucesso!"
+        + "<a href='https://www.google.com' class='alert-link'> Clique para acessar o produto</a>"
+        + "</div>"
+      );
     }
   });
 });

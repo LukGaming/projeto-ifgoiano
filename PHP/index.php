@@ -29,37 +29,48 @@ $deleta_usuario->deleteUser();*/
 //PRODUTO//
 //Listando todos os produtos
 //PEGANDO ID DOS PRODUTOS
-/*$id_produtos = array();
-$todos_produtos = Produto::getListofProducts();
-foreach ($todos_produtos as $key => $value) {
-    array_push($id_produtos,$value['id_produto']);      
-}
-var_dump($id_produtos);*/
-$sql = new Sql();
-$todos_produtos = Produto::getListofProducts();
-    for($i=0;$i<count($todos_produtos); $i++){
-        $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
-            ":ID_PRODUTO"=>$todos_produtos[$i]['id_produto']));
-        $nome_imagem = $consulta[0];
-        $todos_produtos[$i]['imagem'] = $nome_imagem;
-    }
+/*$todos_produtos = Produto::getListofProducts();
+        $sql = new Sql();
+        for($i=0;$i<count($todos_produtos); $i++){
+            $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
+                ":ID_PRODUTO"=>$todos_produtos[$i]['id_produto']));
+               $imagem = $consulta[0];
+               $todos_produtos[$i]['imagem'] = $imagem;
+        }
+        echo json_encode($todos_produtos);
+*/
 //echo json_encode($todos_produtos['id_produto']);
 if(isset($_GET['getListofProducts'])){
     $getListOfProducts = $_GET['getListofProducts'];
     if($getListOfProducts == 1){
         $todos_produtos = Produto::getListofProducts();
+        $todos_produtos = Produto::getListofProducts();
+        $sql = new Sql();
+        for($i=0;$i<count($todos_produtos); $i++){
+            $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
+                ":ID_PRODUTO"=>$todos_produtos[$i]['id_produto']));
+               $imagem = $consulta[0];
+               $todos_produtos[$i]['imagem'] = $imagem;
+        }
+        echo json_encode($todos_produtos);
+    }
+    else{    
+        $keyword = $_GET['keyword'];
+        $todos_produtos = Produto::searchProduto($keyword); 
         $sql = new Sql();
         for($i=0;$i<count($todos_produtos); $i++){
         $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
             ":ID_PRODUTO"=>$todos_produtos[$i]['id_produto']));
         $nome_imagem = $consulta[0];
         $todos_produtos[$i]['imagem'] = $nome_imagem;
-    }
-        echo json_encode($todos_produtos);
-    }
-    else{    
-        $keyword = $_GET['keyword'];    
-       echo json_encode(Produto::searchProduto($keyword)); 
+        }
+        if(count($todos_produtos) > 0){
+            echo json_encode($todos_produtos);
+        }
+        else{
+            echo json_encode(array("vazio"=>"vazio"));
+        }
+        
     }
 }
 //CADASTRANDO PRODUTO

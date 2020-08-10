@@ -3,58 +3,63 @@ var ProductElements = $("article")[1];
 var inputBuscar = $("#input-buscar");
 
 $(document).ready(mostraTodosProdutos);
-
 function mostraTodosProdutos() {
     $(ProductElements).empty();
     $.getJSON("../../PHP/index.php",
-    "getListofProducts=1",
+        "getListofProducts=1",
         function (data) {
             data.forEach(item => {
-                console.log(item.imagem.caminho);
                 $(ProductElements).append(
-                    "<div class='div-produto'>"
+                    "<a href='../../visualizar_produto/index.html/"+item.id_produto+"' >"
+                    +"<div class='div-produto'>"
                     + "<div class='imagem-produto'>"
-                    + "<img src='../../upload_images/"+item.imagem.caminho+"' width='256' height='256'>"
+                    + "<img src='../../upload_images/" +item.imagem.caminho+"' width='256' height='256'>"
                     + "</div>"
                     + "<div class='dados-produto'>"
                     + "<div class='h3 font-weight-bold'>R$ " + item.valor_produto + "</div>"
                     + "<div class='h6 font-weight-bold'>" + item.nome_produto + "</div>  "
                     + "</div>  "
                     + "</div>"
+                    +"</a>"
                 );
             });
         }
+
     );
 }
 $(inputBuscar).keyup(buscarProdutoPorNome);
-
 function buscarProdutoPorNome() {
-    if(inputBuscar.val() !== "") {
+    if (inputBuscar.val() !== "") {
         $(ProductElements).empty();
         $.getJSON("../../PHP/index.php",
-            "getListofProducts=0"       
-            +"&keyword="+inputBuscar.val(),
+            "getListofProducts=0"
+            + "&keyword=" + inputBuscar.val(),
             function (result) {
-                if(result.length > 0){                    
-                    result.forEach(item => {                                       
+                if (!result.vazio) {
+                    result.forEach(item => {
                         $(ProductElements).append(
                             "<div class='div-produto'>"
                             + "<div class='imagem-produto'>"
-                            + "<img src='../../upload_images/"+item.id_produto+"-0.png' width='256' height='256'>"
+                            + "<img src='../../upload_images/" + item.imagem.caminho + "' width='256' height='256'>"
                             + "</div>"
                             + "<div class='dados-produto'>"
                             + "<div class='h3 font-weight-bold'>R$ " + item.valor_produto + "</div>"
-                            + "<div class='h6 font-weight-bold'>" + item.nome_produto + "</div> "
-                            + "</div>"
+                            + "<div class='h6 font-weight-bold'>" + item.nome_produto + "</div>  "
+                            + "</div>  "
                             + "</div>"
                         );
-                    });
 
+                    });
+                }
+                else {
+                    $(ProductElements).append("<p>Não há Produtos Relacionados</p>");
                 }
             }
+
         );
+
     }
-    if(inputBuscar.val() == ""){
+    if (inputBuscar.val() == "") {
         mostraTodosProdutos();
     }
 }
