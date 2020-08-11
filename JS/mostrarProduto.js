@@ -17,7 +17,6 @@ function mostraSomenteUmProduto() {
             "getoneproduct=1"
             + "&id_produto=" + id_produto,
             function (result) {
-                console.log(result)
                 if(result.vazio == 0){
                     limpaTela();
                 }
@@ -37,9 +36,10 @@ function mostraSomenteUmProduto() {
                     }
                     $(nome).append("<div>" + result[0].nome_produto + "</div>");
                     $(valor).append("<div>" + result[0].valor_produto + "</div>");
-                    $(qtd_disponivel).append("<div>" + result[0].qtd_disponivel + "</div>");
-                    $(descricao).append("<div>" + result[0].descricao_produto + "</div>");
+                    $(qtd_disponivel).append(result[0].qtd_disponivel);
+                    $(descricao).append("<div>" + result.descricao[0] + "</div>");
                     $(vendedor).append("<div>" + result.nome_vendedor + "</div>");
+                    
                 }
                     
             }

@@ -41,7 +41,7 @@ if(isset($_GET['getListofProducts'])){
         }
         echo json_encode($todos_produtos);
     }
-    else{    
+    else{
         $keyword = $_GET['keyword'];
         $todos_produtos = Produto::searchProduto($keyword); 
         $sql = new Sql();
@@ -65,18 +65,29 @@ if(isset($_FILES['files']['name'])){//$countfiles = count($_FILES['files']['name
     $novo_produto = new Produto(
         $_POST['nome'],
         $_POST['qtd_disponivel'],
-        $_POST['descricao'],
+        0,
         $_POST['valor'],
         1   //este é o id do usuário
     );
+    $descricao =  $_POST['descricao'];
     $lastId = $novo_produto->insert();
-    //var_dump($_POST['nome']['nome']);
     //Count total files
+    //Criando arquivo se ele nao existir
+    $dir = "..".DIRECTORY_SEPARATOR."descricao";
+    //Caminho onde será salvo o arquivo txt e o nome do arquivo com o nome do ultimo id inserido
+    $fileName = $dir.DIRECTORY_SEPARATOR."descricao".$lastId.".txt";
+    //se o caminho do arquivo nao existir, será criado
+    if(!is_dir($dir)){
+        mkdir($dir, 0777);
+    }
+    //Colocando a  descricao  dentro  do   arquivo
+    file_put_contents($fileName,$descricao);
+    //Lendo  o arquivo  de volta
     $countfiles = count($_FILES['files']['name']);
     // Upload directory
     $upload_location = "../upload_images/";
     if(!is_dir($upload_location)){
-        mkdir($upload_location);
+        mkdir($upload_location,0777);
     }
     // To store uploaded files path
     $files_arr = array();
@@ -108,37 +119,11 @@ if(isset($_FILES['files']['name'])){//$countfiles = count($_FILES['files']['name
                 ));
             }
         }
-    }    
+    }
+    $files_arr['last_id'] = $lastId;
 echo json_encode($files_arr);
 }
 //Buscando dados somente de um produto pelo ID.  
-
- /*   $buscar_produto_id = new Produto();
-    $retorno = $buscar_produto_id->getProductById(487);
-    if($retorno == 0){
-        echo json_encode(array(
-            "vazio"=>0
-        ));
-    }else{
-        $sql = new Sql();
-        $consulta = $sql->select("SELECT caminho from imagens WHERE id_produto = :ID_PRODUTO",array(
-            ":ID_PRODUTO"=>$buscar_produto_id->getId()));
-        for($i=0; $i<count($consulta); $i++){
-            $retorno['imagem'][$i] = $consulta[$i];
-        }
-        $nome_vendedor = $sql->select("select nome from usuario where id_usuario = :ID_USUARIO",
-        array(
-            "ID_USUARIO"=>$retorno[0]['id_vendedor']
-            ));
-        $retorno['nome_vendedor'] = $nome_vendedor[0]['nome'];
-        echo json_encode($retorno);
-    }*/
-    
-
-
-
-
-
 
 if(isset($_GET['getoneproduct'])){
     $buscar_produto_id = new Produto();
@@ -159,6 +144,9 @@ if(isset($_GET['getoneproduct'])){
             "ID_USUARIO"=>$retorno[0]['id_vendedor']
             ));
         $retorno['nome_vendedor'] = $nome_vendedor[0]['nome'];
+        $fileName = "..".DIRECTORY_SEPARATOR."descricao".DIRECTORY_SEPARATOR."descricao".$retorno[0]['id_produto'].".txt";
+        $descricao =  file_get_contents($fileName);
+        $retorno['descricao'][0] = $descricao;
         echo json_encode($retorno);
     }
 }
@@ -177,5 +165,5 @@ echo $update_produto;*/
 //Deletando um produto
 /*$produto = new Produto();
 $produto->getProductById(22);
-$produto->delete();
-echo $produto;*/
+$produto->delete();*/
+
