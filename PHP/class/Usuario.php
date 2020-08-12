@@ -45,10 +45,11 @@ class Usuario{
             $this->constructUser($row);
         }
     }
-    
-    static function w(){
-        $sql = new Sql();
-        return $sql->select("select * from usuario ORDER BY id_usuario");
+    static function verificaEmail($email){
+       $sql = new Sql();
+       return $sql->select("select email from usuario where email = :EMAIL", array(
+           ":EMAIL"=>$email
+       ));
     }
     static function searchUserByName($name){
         $sql = new Sql();

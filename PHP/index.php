@@ -12,9 +12,88 @@ echo $mostra_usuario;*/
 /*$getuserByauth = new Usuario();
 $getuserByauth->getUserByAuth("juliO@gmail.com", "49:50:51:52:53:54:55:56");
 echo $getuserByauth;*/
-//INSERT NA TABELA DOS USUARIOS
-/*$insert_user  = new Usuario("MARIA DE FATIMA FERREIRA MENDES","1962-05-06","fatimatiana_@hotmail.com","123456789");
-$insert_user->insert();*/
+//Criando Usuário com a senha criptograda
+/*$senha = "123456789";
+$senha_criptograda = password_hash($senha, PASSWORD_DEFAULT);
+$insert_user  = new Usuario("MARIA DE FATIMA FERREIRA MENDES","1962-05-06","fatimatiana_@hotmail.com",$senha_criptograda);
+$insert_user->insert();
+
+//Verifica se a senha do usuário
+$mostra_usuario = new Usuario();
+$mostra_usuario->getUserById(4);
+if(password_verify($senha, $mostra_usuario->getSenha())){
+    echo "sessao inicializada";
+}*/
+
+if(isset($_POST['cadastro'])){
+    //Primeiro verificaremos se existe algum email
+    if(count(Usuario::verificaEmail($_POST['email'])) == 1){
+        echo json_encode(1);
+    }
+    else{
+        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+        $new_user = new Usuario($_POST['nome'], $_POST['data_nascimento'], $_POST['email'], $senha);
+        $new_user->insert();
+        echo json_encode(0);
+    }
+    
+}
+if(isset($_POST['login'])){
+    $sql = new Sql();
+    $email = $_POST['email'];
+    $password = $_POST['senha'];
+    if(count(Usuario::verificaEmail($email)) == 0){
+        echo json_encode(0);
+    }
+    else{
+        $sql = new Sql();
+        $dados_usuario = $sql->select("select * from usuario WHERE email = :EMAIL", array(
+            ":EMAIL"=>$email
+        ));
+        $senha_banco = $dados_usuario[0]["senha"];
+            if(password_verify($password, $senha_banco)){
+            session_start();
+            $_SESSION['nome'] = $dados_usuario[0]["nome"];
+            $_SESSION['email'] = $dados_usuario[0]["email"];
+            echo json_encode($_SESSION);     
+        }
+        else{
+            echo json_encode(0);
+        }
+    }
+}
+
+//Procuro usuário por email
+/*$sql = new Sql();
+$email = "thelukgaming333@yahoo.com.br";
+$password = "123456789";
+if(count(Usuario::verificaEmail($email)) == 0){
+    echo json_encode(0);
+}
+else{
+    $sql = new Sql();
+    $dados_usuario = $sql->select("select * from usuario WHERE email = :EMAIL", array(
+        ":EMAIL"=>$email
+    ));
+    $senha_banco = $dados_usuario[0]["senha"];
+    if(password_verify($password, $senha_banco)){
+        session_start();
+        $_SESSION['nome'] = $dados_usuario[0]["nome"];
+        $_SESSION['email'] = $dados_usuario[0]["email"];
+        echo json_encode($_SESSION);     
+    }
+    else{
+        echo json_encode(0);
+    }
+}*/
+
+
+//Verificado se a senha do usuário que retornou é igual a senha passada por parametro
+
+
+
+
+
 //FAZ UPDATE NOS DADOS DO USUÁRIO
 /*$update_usuario = new Usuario();
 $update_usuario->getUserById(1);
@@ -121,7 +200,7 @@ if(isset($_FILES['files']['name'])){//$countfiles = count($_FILES['files']['name
         }
     }
     $files_arr['last_id'] = $lastId;
-echo json_encode($files_arr);
+    echo json_encode($files_arr);
 }
 //Buscando dados somente de um produto pelo ID.  
 
@@ -166,4 +245,6 @@ echo $update_produto;*/
 /*$produto = new Produto();
 $produto->getProductById(22);
 $produto->delete();*/
+
+
 
