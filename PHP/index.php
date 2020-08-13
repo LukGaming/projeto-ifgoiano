@@ -180,7 +180,6 @@ if(isset($_FILES['files']['name'])){//$countfiles = count($_FILES['files']['name
     $files_arr['last_id'] = $lastId;
     echo json_encode($files_arr);
 }
-//Buscando dados somente de um produto pelo ID.  
 
 if(isset($_GET['getoneproduct'])){
     $buscar_produto_id = new Produto();
@@ -253,11 +252,3 @@ function verify_user_session(){
 function logout(){
     unset($_SESSION['user_data']);
 }
-/*$novo_produto = new Produto(
-   "Nome",
-    "1",
-    0,
-    1,
-    $_SESSION['user_data']['id']
-);
-echo $novo_produto->insert();*/

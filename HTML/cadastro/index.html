@@ -1,167 +1,91 @@
 <!doctype html>
 <html lang="pt-BR">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1,
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
             shrink-to-fit=no">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="description" content="Blog do Luk">
-        <meta name="keywords" content="hardware, software, games, programacao,
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Blog do Luk">
+    <meta name="keywords" content="hardware, software, games, programacao,
             estudo, luk, blog do Luk">
-        <link rel="shortcut icon" href="../images/favicon.ico"
-            type="image/x-icon">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous">
-        <!--Fontes-->
-        <link rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-            integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-            crossorigin="anonymous">
-        <!--Css local-->
-        <link rel="stylesheet" href="../css/style.css">
-        <title>Contato | Blog do Luk</title>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Fontes-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <!--Css local-->
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Contato | Blog do Luk</title>
 
-    </head>
+</head>
 
-    <body>
-        <header>
-            <div class="container-fluid">
-                <div class="row text-white" id="bg-header">
-                    <div class="col-sm-3 d-none d-sm-block">
-                        <img src="../images/hardware.png"alt="logo-hardware"
-                            class="w-50 h-auto">
-                    </div>
-                    <div class="col-sm-6 w-100 h-auto">
-                        <div class="display-4 text-center p-5">
-                            BLOG DO LUK
-                        </div>
-                    </div>
-                    <div class="col-sm-3 d-none d-sm-block">
-                        <img src="../images/software.png" alt="logo-software"
-                            class="w-50 h-auto">
-                    </div>
-                </div>
-            </div>
-        </header>
-        <nav class="navbar navbar-expand-lg nav" id="bg-nav">
-            <a class="navbar-brand text-white" href="#">Menu</a>
-            <button class="navbar-toggler btn btn-danger bg-primary"type="button"
-                data-toggle="collapse"
-                data-target="#meunav" aria-controls="navbarNav"
-                aria-expanded="false" aria-label="Alterna navegação">
-                <span class="navbar-toggler-icon"> | | |</span>
-            </button>
-            <div class="collapse navbar-collapse" id="meunav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white"
-                            href="../home/index.html">Pagina Inicial
-                            <span class="sr-only"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white"
-                            href="../loja/index.html">Loja</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white"
-                            href="../software/index.html">Software</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white"
-                            href="../hardware/index.html">Hardware</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white"
-                            href="../games/index.html">Games</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white"
-                            href="../contato/index.html">Contato</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <section class="container-fluid h-auto" id="bg-section">
-            <article>
-                <div class="container bg-artigo text-white text-justify">
+<body>
+    <section class="container-fluid h-auto  id=" bg-section">
+        <article>
+            <div class="container text-white text-justify bg-dark">
                     <h2 class="h2">Formulário para cadastro</h2>
-                    <br>
-                    <form>
-                            <div class="form-group">
-                                <label for="nome">Nome Completo</label>
-                                    <input type="text" class="form-control" id="nome" placeholder="Nome" >
-                                    <span class="badge badge-danger" id="erro-nome"></span>
-                            </div>
-                            <!--DATA-->
-                           <div class="form-group">
-                                <label for="date">Data de Nascimento</label>
-                                <input type="text"  class="form-control" id="date" name="date" data-inputmask-alias="datetime" placeholder="dd/mm/aaaa">
-                                <span class="badge badge-danger" id="erro-data"></span>
-                            </div>
-                            <!--DATA-->                            
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email"  class="form-control" id="email" placeholder="Email">
-                                <span class="badge badge-danger" id="erro-email"></span>
-                            </div>
+                <br>
+                <form>
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Nome">
+                        <span class="badge badge-danger" id="erro-nome"></span>
+                    </div>
+                    <!--DATA-->
+                    <div class="form-group">
+                        <label for="date">Data de Nascimento</label>
+                        <input type="text" class="form-control" id="date" name="date" data-inputmask-alias="datetime"
+                            placeholder="dd/mm/aaaa">
+                        <span class="badge badge-danger" id="erro-data"></span>
+                    </div>
+                    <!--DATA-->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <span class="badge badge-danger" id="erro-email"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+                        <span class="badge badge-danger" id="erro-senha"></span>
+                    </div>
 
-                            <div class="form-group">
-                            <label for="senha">Senha:</label>
-                            <input type="password" class="form-control" id="senha"  placeholder="Digite sua senha">
-                            <span class="badge badge-danger" id="erro-senha"></span>
-                            </div>
-
-                            <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary" id="cadastrar">Cadastrar</button>
-                            </div>      
-                    </form>
-                </div>
-            </article>
-        </section>
-       <!-- <footer>
-            <div id="bg-footer" class="h-auto text-white">
-                Lorem ipsum dolor sit amet, suas euismod eam cu, cu maiorum
-                lobortis mea. Cu offendit scaevola inimicus vim,
-                ea sed purto
-                error everti. Volumus eligendi salutatus his ea, diam iudico
-                propriae pro ex. Liber ubique dolorem te quo.
-                Aeterno
-                conceptam ad mea.
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary" id="cadastrar">Cadastrar</button>
+                    </div>
+                </form>
             </div>
-        </footer>-->
-        <div id="suporte-online" onclick="location.href=
+        </article>
+    </section>
+    
+    <div id="suporte-online" onclick="location.href=
             '../contato_suporte/index.html'"> &reg; Suporte Online</div>
 
-        <!-- JavaScript opcional -->
-        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-        <script
-            src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-        <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
-        <!--JS DA DATA-->        
-        <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-        <script>
-            $("input[id*='date']").inputmask({
+    <!-- JavaScript opcional -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <!--JS DA DATA-->
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script>
+        $("input[id*='date']").inputmask({
             mask: ['99/99/9999'],
             keepStatic: true
-          });
-        </script>
-        <script src="../../JS/cadastra_usuario.js"></script>
-    </body>
+        });
+    </script>
+    <script src="../../JS/cadastra_usuario.js"></script>
+</body>
 
 </html>

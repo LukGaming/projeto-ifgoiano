@@ -39,7 +39,6 @@ function mostraSomenteUmProduto() {
                     $(qtd_disponivel).append(result[0].qtd_disponivel);
                     $(descricao).append("<div>" + result.descricao[0] + "</div>");
                     $(vendedor).append("<div>" + result.nome_vendedor + "</div>");
-                    
                 }
                     
             }

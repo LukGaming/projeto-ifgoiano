@@ -20,53 +20,46 @@
 </head>
 
 <body>
-    <header>
-        <div class="container-fluid">
-            <div class="row  text-white" id="bg-header">
-                <div class="col-sm-3 d-none d-sm-block">
-                    <img src="../images/hardware.png " alt="logo-hardware" class="w-25 h-auto">
-                </div>
-                <div class="col-sm-6 w-100 h-auto">
-                    <div class="display-4 text-center p-5">
-                        BLOG DO LUK
-                    </div>
-                </div>
-                <div class="col-sm-3 d-none d-sm-block">
-                    <img src="../images/software.png" alt="logo-software" class="w-25 h-auto">
-                </div>
-            </div>
-        </div>
-    </header>
-    <nav class="navbar navbar-expand-lg nav" id="bg-nav">
-        <a class="navbar-brand text-white" href="#">Menu</a>
-        <button class="navbar-toggler btn btn-danger bg-primary " type="button" data-toggle="collapse"
-            data-target="#meunav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-            <span class="navbar-toggler-icon "> | | |</span>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light " id="bg-nav"  >
+        <a class="navbar-brand text-white" href="../home/index.html">Pagina Inicial</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="meunav">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav w-100">
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="../home/index.html">Pagina Inicial
-                        <span class="sr-only "></span>
-                    </a>
+                    <a class="nav-link text-white" href="../buscar_produto/index.html">Produtos <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../loja/index.html">Loja</a>
+                    <a class="nav-link text-white" href="#">Outro Link</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../contato/index.html">Contato</a>
+                    <a class="nav-link text-white" href="#">Outro Link</a>
+                </li>
+                <li class="nav-item dropdown ml-auto ">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                       
+                        <span id="nome_usuario"></span>
+                         </a>
+                    <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="../perfil_usuario/index.html">Perfil</a>
+                        <a class="dropdown-item" href="../configurações/index.html">Configurações</a>
+                        <a class="dropdown-item" id="deslogar">Sair</a>
+                    </div>
                 </li>
             </ul>
         </div>
     </nav>
-    <section class="container h-auto" id="bg-section">
+    <section class="container h-100" id="bg-section" style="padding-top: 50px;">
         <article>
             <div id='borda-em-volta-do-produto-todo' class='w-auto'>
                 <div id='borda-imagem-somente-produto'>
                     <div id='carouselExampleControls' class='carousel slide' data-ride='carousel'
                         style='height: 390px; width:390px;'>
                         <div class='carousel-inner' id="imagens-carrolsel">
-
                         </div>
                         <a class='carousel-control-prev' href='#carouselExampleControls' role='button'
                             data-slide='prev'>
@@ -124,6 +117,6 @@
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
     <script src="../../JS/mostrarProduto.js"></script>
+    <script src="../../JS/menu.js"></script>
 </body>
-
 </html>

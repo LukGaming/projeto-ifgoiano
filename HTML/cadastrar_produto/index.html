@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light " id="bg-nav">
+    <nav class="navbar navbar-static-top navbar-expand-lg navbar-light " id="bg-nav" >
         <a class="navbar-brand text-white" href="../home/index.html">Pagina Inicial</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,9 +72,9 @@
             </ul>
         </div>
     </nav>
-    <section class="container-fluid h-auto" id="bg-section">
-        <article>
-            <div class="container-fluid h-100 bg-dark text-white" ">
+    <section class="container-fluid h-auto" id="bg-section" style="padding: 5px;">
+        <article >
+            <div class="container h-100 bg-dark text-white" ">
                 <h1>Formulário de cadastro de produto</h1>
                 <div class=" form-row">
                 <div class="form-group col-md-12">
@@ -103,17 +103,17 @@
                     <span class="badge badge-danger" id="erro-descricao"></span>
                 </div>
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-3" style="padding-left: 0;">
                 <label for="quantidade" style="float: left;">Quantidade</label>
                 <input type="number" class="form-control" id="quantidade" placeholder="Ex:  1, 400">
                 <span class="badge badge-danger" id="erro-quantidade"></span>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3" style="padding-left: 0;">
                 <label for="valor" style="float: left;">Valor</label>
                 <input type="Number" class="form-control" id="valor" placeholder="Ex:  1.00, 400.00">
                 <span class="badge badge-danger" id="erro-valor"></span>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-4" style="padding-left: 0;">
                 <form method='post' action='' enctype="multipart/form-data"></form>
 
                 <label for="files" style="float: left;">
@@ -121,8 +121,9 @@
                 </label>
                 <input type="file" id='files' name="files[]" multiple accept="image/*"><br>
                 <br>
+                <span class="badge badge-danger" id="erro-imagens"></span>
             </div>
-            <input type="button" id="submit" value='Cadastrar' class="btn btn-primary">
+            <input type="button" id="submit" value='Cadastrar' class="btn btn-primary" style="margin: 10px;">
             </form>
             <span id="span-sucesso"></span>
         </article>
