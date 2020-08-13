@@ -39,48 +39,42 @@
 </head>
 
 <body>
-    <header>
-        <div class="container-fluid">
-            <div class="row  text-white" id="bg-header">
-                <div class="col-sm-3 d-none d-sm-block">
-                    <img src="../images/hardware.png " alt="logo-hardware" class="w-50 h-auto">
-                </div>
-                <div class="col-sm-6 w-100 h-auto">
-                    <div class="display-4 text-center p-5">
-                        BLOG DO LUK
-                    </div>
-                </div>
-                <div class="col-sm-3 d-none d-sm-block">
-                    <img src="../images/software.png" alt="logo-software" class="w-50 h-auto">
-                </div>
-            </div>
-        </div>
-    </header>
-    <nav class="navbar navbar-expand-lg nav" id="bg-nav">
-        <a class="navbar-brand text-white" href="#">Menu</a>
-        <button class="navbar-toggler btn btn-danger bg-primary " type="button" data-toggle="collapse"
-            data-target="#meunav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-            <span class="navbar-toggler-icon "> | | |</span>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light " id="bg-nav">
+        <a class="navbar-brand text-white" href="../home/index.html">Pagina Inicial</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="meunav">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav w-100">
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="../home/index.html">Pagina Inicial
-                        <span class="sr-only "></span>
-                    </a>
+                    <a class="nav-link text-white" href="../buscar_produto/index.html">Produtos <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../loja/index.html">Loja</a>
+                    <a class="nav-link text-white" href="#">Outro Link</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../contato/index.html">Contato</a>
+                    <a class="nav-link text-white" href="#">Outro Link</a>
+                </li>
+                <li class="nav-item dropdown ml-auto ">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                       
+                        <span id="nome_usuario"></span>
+                         </a>
+                    <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="../perfil_usuario/index.html">Perfil</a>
+                        <a class="dropdown-item" href="../configurações/index.html">Configurações</a>
+                        <a class="dropdown-item" id="deslogar">Sair</a>
+                    </div>
                 </li>
             </ul>
         </div>
     </nav>
     <section class="container-fluid h-auto" id="bg-section">
         <article>
-            <div class="container h-100 bg-dark text-white" ">
+            <div class="container-fluid h-100 bg-dark text-white" ">
                 <h1>Formulário de cadastro de produto</h1>
                 <div class=" form-row">
                 <div class="form-group col-md-12">
@@ -92,16 +86,16 @@
                     <!--<label for="descricao" style="float: left;">Descrição</label>
                     <textarea class="form-control" id="descricao" rows="3"></textarea>-->
                     <label for="descricao" style="float: left;">Descrição</label><br><br>
-                    <div class="center" >
-                        
-                        <div class="editor" contenteditable style="background-color: white; color: black; text-align: left;">
-                
+                    <div class="center">
+                        <div class="editor" contenteditable
+                            style="background-color: white; color: black; text-align: left;">
+
                         </div>
                     </div>
-                
+
                     <div class="center">
                     </div>
-                    <div class="center" >
+                    <div class="center">
                         <section class="getcontent" style="display: none;">
                         </section>
                     </div>
@@ -134,30 +128,30 @@
         </article>
     </section>
     <footer>
-        <div id="bg-footer" class="h-auto text-white">
+        <!--<div id="bg-footer" class="h-auto text-white">
             Lorem ipsum dolor sit amet, suas euismod eam cu, cu maiorum lobortis mea. Cu offendit scaevola inimicus vim,
             ea sed purto
             error everti. Volumus eligendi salutatus his ea, diam iudico propriae pro ex. Liber ubique dolorem te quo.
             Aeterno
             conceptam ad mea.
         </div>
-    </footer>
-    <div id="suporte-online" onclick="location.href = '../contato_suporte/index.html'"> &reg; Suporte Online</div>
-    <!-- JavaScript opcional -->
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="../../JS/CriaProduto.js"></script>
+    </footer>-->
+        <div id="suporte-online" onclick="location.href = '../contato_suporte/index.html'"> &reg; Suporte Online</div>
+        <!-- JavaScript opcional -->
+        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+        <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="../../JS/cadastra_produto.js"></script>
+        <script src="../../JS/menu.js"></script>
 </body>
-
 </html>

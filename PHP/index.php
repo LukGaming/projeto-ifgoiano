@@ -1,5 +1,6 @@
 <?php
 require_once("config.php");
+session_start();
 ///Mostra um usuário especifico pelo Id.
 /*$mostra_usuario = new Usuario();
 $mostra_usuario->getUserById(1);
@@ -9,9 +10,6 @@ echo $mostra_usuario;*/
 //Procura um usário a partir do nome do usuário
 //echo json_encode(Usuario::searchUserByName("ju"));
 //Traz todos os dados do usuário a partir de uma autenticacao de email e senha
-/*$getuserByauth = new Usuario();
-$getuserByauth->getUserByAuth("juliO@gmail.com", "49:50:51:52:53:54:55:56");
-echo $getuserByauth;*/
 //Criando Usuário com a senha criptograda
 /*$senha = "123456789";
 $senha_criptograda = password_hash($senha, PASSWORD_DEFAULT);
@@ -24,7 +22,20 @@ $mostra_usuario->getUserById(4);
 if(password_verify($senha, $mostra_usuario->getSenha())){
     echo "sessao inicializada";
 }*/
-
+if(isset($_POST['deslogando'])){
+    logout();
+    if(!isset($_SESSION['user_data'])){
+        $resultado = array(
+            "resultado"=>1
+        );
+    }
+    else{
+        $resultado = array(
+            "resultado"=>0
+        );
+    }
+    echo json_encode($resultado);
+}
 if(isset($_POST['cadastro'])){
     //Primeiro verificaremos se existe algum email
     if(count(Usuario::verificaEmail($_POST['email'])) == 1){
@@ -52,48 +63,15 @@ if(isset($_POST['login'])){
         ));
         $senha_banco = $dados_usuario[0]["senha"];
             if(password_verify($password, $senha_banco)){
-            session_start();
-            $_SESSION['nome'] = $dados_usuario[0]["nome"];
-            $_SESSION['email'] = $dados_usuario[0]["email"];
-            echo json_encode($_SESSION);     
+            //Criptografando a sessão do usuário
+            session_put_user_data($dados_usuario[0]["id_usuario"],$dados_usuario[0]["nome"],$dados_usuario[0]["email"]);
+            echo json_encode(1);
         }
         else{
             echo json_encode(0);
         }
     }
 }
-
-//Procuro usuário por email
-/*$sql = new Sql();
-$email = "thelukgaming333@yahoo.com.br";
-$password = "123456789";
-if(count(Usuario::verificaEmail($email)) == 0){
-    echo json_encode(0);
-}
-else{
-    $sql = new Sql();
-    $dados_usuario = $sql->select("select * from usuario WHERE email = :EMAIL", array(
-        ":EMAIL"=>$email
-    ));
-    $senha_banco = $dados_usuario[0]["senha"];
-    if(password_verify($password, $senha_banco)){
-        session_start();
-        $_SESSION['nome'] = $dados_usuario[0]["nome"];
-        $_SESSION['email'] = $dados_usuario[0]["email"];
-        echo json_encode($_SESSION);     
-    }
-    else{
-        echo json_encode(0);
-    }
-}*/
-
-
-//Verificado se a senha do usuário que retornou é igual a senha passada por parametro
-
-
-
-
-
 //FAZ UPDATE NOS DADOS DO USUÁRIO
 /*$update_usuario = new Usuario();
 $update_usuario->getUserById(1);
@@ -146,7 +124,7 @@ if(isset($_FILES['files']['name'])){//$countfiles = count($_FILES['files']['name
         $_POST['qtd_disponivel'],
         0,
         $_POST['valor'],
-        1   //este é o id do usuário
+        $_SESSION['user_data']['id']
     );
     $descricao =  $_POST['descricao'];
     $lastId = $novo_produto->insert();
@@ -246,5 +224,40 @@ echo $update_produto;*/
 $produto->getProductById(22);
 $produto->delete();*/
 
+//Verificando se usuário está logado
+if(isset($_POST["verifica_sessao"])){
+    echo json_encode(verify_user_session());
+}
+//Funções para sessões
+function session_put_user_data($id_usuario,$nome_usuario,$email_usuario){          
+    $usuario = array(
+        "id"=>$id_usuario,
+        "nome"=>$nome_usuario,
+        "email"=>$email_usuario
+    );
+   $_SESSION['user_data'] = $usuario;
+}
 
-
+function verify_user_session(){
+    if(!$_SESSION){
+        return json_encode(0);
+    }
+    else{
+        $usuario = array(
+            "id"=>$_SESSION['user_data']['id'],
+            "nome"=>$_SESSION['user_data']['nome'],
+            "email"=>$_SESSION['user_data']['email']);
+        return $usuario;            
+    }
+}
+function logout(){
+    unset($_SESSION['user_data']);
+}
+/*$novo_produto = new Produto(
+   "Nome",
+    "1",
+    0,
+    1,
+    $_SESSION['user_data']['id']
+);
+echo $novo_produto->insert();*/

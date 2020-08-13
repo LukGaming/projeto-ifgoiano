@@ -64,20 +64,6 @@ class Usuario{
         $this->setEmail($data['email']);
         $this->setSenha($data['senha']);
     }
-    public function getUserByAuth($email, $password){
-        $sql = new Sql();
-        $resultado = $sql->select("select * from usuario WHERE email = :EMAIL AND senha = :SENHA",array(
-            ":EMAIL"=>$email,
-            ":SENHA"=>$password
-        ));
-        if(count($resultado) > 0){
-            $row = $resultado[0];
-            $this->constructUser($row);
-        }
-        else{
-            echo "Email ou senha incorretos";
-        }
-    }
     public function insert(){
         $sql = new Sql();
         $sql->query("insert into usuario (nome, data_nascimento, email, senha)  values(:NOME,:DATA_NASCIMENTO,:EMAIL,:SENHA)",array(

@@ -1,6 +1,21 @@
 
-$(document).ready(function () {
-  $('#submit').click(function () {
+$(document).ready(verificaSessao);
+function verificaSessao() {
+  $.post("../../PHP/index.php",
+    "verifica_sessao=1",
+    function (retorno) {
+      data = JSON.parse(retorno);
+      if (data == 0) {
+        window.location = "../login/index.html?cadastro_produto=1";
+      }
+      else {
+
+      }
+    });
+  }
+  
+  $('#submit').click(cadastrarProduto);
+  function cadastrarProduto() {
     var form_data = new FormData();//IMAGEM
     var totalfiles = document.getElementById('files').files.length;//Imagem
     var input_imagens = document.getElementById('files');
@@ -9,11 +24,9 @@ $(document).ready(function () {
     //var descricao = $("#descricao");
     var content = document.querySelector(".getcontent");
     var editorContent = document.querySelector(".editor");
-
     var s = editorContent.innerHTML;
     content.textContent = s;
     var descricao = editorContent.innerHTML;
-    console.log(descricao);
     var valor = $("#valor");
     var erro_nome = $("#erro-nome");
     var erro_quantidade = $("#erro-quantidade");
@@ -50,7 +63,7 @@ $(document).ready(function () {
       erro_descricao.html("");
       count3 = 0;
     }
-    
+
     if (valor.val() == 0) {
       erro_valor.html("Valor Invalido");
       count4 = -1;
@@ -96,7 +109,7 @@ $(document).ready(function () {
           span_sucesso.append(
             "'<div class='alert' role='alert' style='margin-bottom: 5px; background-color: rgb(0, 179, 134)'> "
             + "Produto Criado com sucesso!"
-            + "<a href='../visualizar_produto/?product="+response.last_id+"' class='alert-link'> Clique para acessar o produto</a>"
+            + "<a href='../visualizar_produto/?product=" + response.last_id + "' class='alert-link'> Clique para acessar o produto</a>"
             + "</div>"
           );
         }
@@ -106,7 +119,5 @@ $(document).ready(function () {
       editorContent.innerHTML = "";
       valor.val("");
       input_imagens.value = "";
- 
     }
-  });
-});
+}

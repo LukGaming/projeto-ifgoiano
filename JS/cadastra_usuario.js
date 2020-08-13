@@ -1,3 +1,18 @@
+$(document).ready(verificaSessao);
+function verificaSessao() {
+  $.post("../../PHP/index.php",
+    "verifica_sessao=1",
+    function (retorno) {
+      data = JSON.parse(retorno);
+      console.log(data);
+      if (data == 0) {
+       
+      }
+      else {
+        window.location = "../home/index.html";
+      }
+    });
+  }
 var btnClicado = $("#cadastrar");
 btnClicado.click(function () {
     var count = 0;
@@ -63,6 +78,6 @@ btnClicado.click(function () {
                 else {
                     window.location = "../login/index.html?cadastro=1";
                 }
-            });
+        });
     }
 });
