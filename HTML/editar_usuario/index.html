@@ -64,30 +64,27 @@
                 <div class=" form-row">
                 <div class="form-group col-md-12">
                     <label for="nome" style="float: left;">Nome Completo</label>
-                    <input type="nome" class="form-control" id="nome" placeholder="Nome"
-                        value="PAULO ANTONIO FERREIRA MENDES MACEDO">
+                    <input type="nome" class="form-control" id="nome" placeholder="Nome" oninput="this.value = this.value.toUpperCase()">
                     <span class="badge badge-danger" id="erro-nome"></span>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="date" style="float: left" ;>Data de Nascimento</label>
-                    <input type="text" class="form-control " id="date" name="date" data-inputmask-alias="datetime"
-                        value="11/06/1998">
+                    <input type="text" class="form-control " id="date" name="date" data-inputmask-alias="datetime">
                     <span class="badge badge-danger" id="erro-data"></span>
                 </div>
 
                 <div class="form-group col-md-12">
-                    <label for="nome" style="float: left;">Email:</label>
-                    <input type="nome" class="form-control" id="nome" placeholder="Nome"
-                        value="thelukgaming333@gmail.com" readonly>
-                    <span class="badge badge-danger" id="erro-nome"></span>
+                    <label for="email" style="float: left;">Email:</label>
+                    <input type="email" class="form-control" id="email" value="" readonly>
+                    <span class="badge badge-danger" id="erro-email"></span>
                 </div>
                 <div class="form-group col-md-12">
-                    <div class="btn btn-success" style="float: left;" id="Editar-senha">Alterar Senha</div>
+                    <div class="btn btn-success" style="float: left;" id="editar-senha">Alterar Senha</div>
 
                 </div>
                 <!--QUANDO O USUÁRIO CLICAR EM EDITAR SENHA-->
                 <div id="div-editar-senha">
-                    <div class="form-group col-md-6 ">
+                    <div class="form-group col-md-6">
                         <label for="old-senha" style="float: left;">Digite a senha antiga</label>
                         <input type="password" class="form-control" id="old-senha">
                         <span class="badge badge-danger" id="erro-senha"></span>
@@ -104,7 +101,10 @@
                     </div>
                 </div>
             </div>
-            <input type="button" id="submit" value='Salvar' class="btn btn-primary" style="margin: 10px;">
+            <div class="form-group col-md-12">
+               <div class='btn btn-success' style='float: left;' id='cancelar'>Cancelar</div>
+                </div>
+            <input type="button" id="salvar" value='Salvar' class="btn btn-primary" style="margin: 10px;">
             </form>
             <span id="span-sucesso"></span>
         </article>
@@ -132,7 +132,8 @@
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="editar_perfil_usuario.js"></script>
+    <script src="../../JS/menu.js"></script>
+    <script src="../../JS/editar_usuario.js"></script>
 </body>
 
 </html>

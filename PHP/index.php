@@ -72,18 +72,7 @@ if(isset($_POST['login'])){
         }
     }
 }
-//FAZ UPDATE NOS DADOS DO USUÁRIO
-/*$update_usuario = new Usuario();
-$update_usuario->getUserById(1);
-echo $update_usuario;
-$update_usuario->update("Paulo Antonio", "1998-06-11","thelukgaming333@gmail.com","123456");
-echo $update_usuario;*/
-//DELETANDO UM USUÁRIO
-/*$deleta_usuario = new Usuario();
-$deleta_usuario->getUserById(11);
-echo $deleta_usuario;
-$deleta_usuario->deleteUser();*/
-//PRODUTO//
+
 //Listando todos os produtos
 if(isset($_GET['getListofProducts'])){
     $getListOfProducts = $_GET['getListofProducts'];
@@ -236,7 +225,6 @@ function session_put_user_data($id_usuario,$nome_usuario,$email_usuario){
     );
    $_SESSION['user_data'] = $usuario;
 }
-
 function verify_user_session(){
     if(!$_SESSION){
         return json_encode(0);
@@ -251,4 +239,56 @@ function verify_user_session(){
 }
 function logout(){
     unset($_SESSION['user_data']);
+}
+if(isset($_POST['request_user_data'])){
+    if(isset($_SESSION['user_data'])){   
+    $sql = new Sql();
+    $consulta = $sql->select("select nome, email, data_nascimento from usuario WHERE id_usuario = :ID_USUARIO",
+    array(
+        ":ID_USUARIO"=>$_SESSION['user_data']['id']
+    ));
+    echo json_encode($consulta[0]);
+    }
+    else{
+        echo json_encode(array(
+            "vazio"=>0
+        ));
+    }
+}
+if(isset($_POST['editar_usuario'])){
+    if(isset($_SESSION['user_data'])){
+        if($_POST['editar_usuario'] == 0){//Se for zero editaremos somente Nome e data de nascimento
+            $sql = new Sql();
+            $consulta = $sql->select("SELECT nome, data_nascimento FROM usuario WHERE id_usuario = :ID_USUARIO",
+            array(
+                ":ID_USUARIO"=>$_SESSION['user_data']['id']
+            ));
+            if($consulta[0]['nome'] != $_POST['nome'] ||  $consulta[0]['data_nascimento'] != $_POST['data_nascimento']){
+                $sql->query("UPDATE usuario SET nome = :NOME, data_nascimento = :DATA_NASCIMENTO WHERE id_usuario = :ID_USUARIO"
+                ,array(
+                    ":NOME"=>$_POST['nome'],
+                    ":DATA_NASCIMENTO"=>$_POST['data_nascimento'],
+                    ":ID_USUARIO"=>$_SESSION['user_data']['id']
+                ));
+                $_SESSION['user_data']['nome'] = $_POST['nome'];
+                echo json_encode(array(
+                    "edicao"=>1
+                ));
+            }
+            else{
+                echo json_encode(array(
+                    "edicao"=>0
+                ));
+            }
+        }
+        else{//Se nao for zero editaremos a senha do usuário também
+
+        }
+    }
+    else{
+        echo json_encode(array(
+            "vazio"=>0
+        ));
+    }
+
 }
