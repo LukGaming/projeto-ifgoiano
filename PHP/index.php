@@ -272,7 +272,8 @@ if(isset($_POST['editar_usuario'])){
                 ));
                 $_SESSION['user_data']['nome'] = $_POST['nome'];
                 echo json_encode(array(
-                    "edicao"=>1
+                    "edicao"=>1,
+                    "alterar_nome"=>$_SESSION['user_data']['nome']
                 ));
             }
             else{
@@ -282,7 +283,29 @@ if(isset($_POST['editar_usuario'])){
             }
         }
         else{//Se nao for zero editaremos a senha do usuário também
-
+            $sql = new Sql();
+            $consulta = $sql->select("SELECT * FROM usuario WHERE id_usuario = :ID_USUARIO", array(
+                ":ID_USUARIO"=>$_SESSION['user_data']['id']
+            ));
+            if(password_verify($_POST['old_senha'], $consulta[0]['senha'])){
+                $sql->query("UPDATE usuario SET nome = :NOME, data_nascimento = :DATA_NASCIMENTO, senha = :SENHA WHERE id_usuario = :ID_USUARIO"
+                ,array(
+                    ":NOME"=>$_POST['nome'],
+                    ":DATA_NASCIMENTO"=>$_POST['data_nascimento'],
+                    ":SENHA"=>password_hash($_POST['new_senha'], PASSWORD_DEFAULT),
+                    ":ID_USUARIO"=>$_SESSION['user_data']['id']
+                ));
+                $_SESSION['user_data']['nome'] = $_POST['nome'];
+                echo json_encode(array(
+                    "edicao"=>1,
+                    "alterar_nome"=>$_SESSION['user_data']['nome']
+                ));
+            }            
+            else{
+                echo json_encode(array(
+                    "edicao"=>0
+                ));
+            }
         }
     }
     else{
@@ -290,5 +313,4 @@ if(isset($_POST['editar_usuario'])){
             "vazio"=>0
         ));
     }
-
 }

@@ -160,6 +160,4 @@ class Produto{
         $this->valor_produto = $valor_produto;
     }
 }
-
-
 ?>
