@@ -23,7 +23,6 @@
             flex-wrap: wrap;
         }
 
-
         .editor {
             width: 100%;
             height: 100%;
@@ -39,7 +38,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-static-top navbar-expand-lg navbar-light " id="bg-nav" >
+    <nav class="navbar navbar-static-top navbar-expand-lg navbar-light " id="bg-nav">
         <a class="navbar-brand text-white" href="../home/index.html">Pagina Inicial</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,80 +51,83 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Outro Link</a>
+                    <a class="nav-link text-white" href="../cadastrar_produto/index.html">Cadastrar Produtos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Outro Link</a>
-                </li>
+
                 <li class="nav-item dropdown ml-auto ">
+                    <a href="../login/index.html" id="deslogado">
+                        <button class="btn btn-primary">Logar-se</button>
+                    </a>
+                <div id="logado">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                       
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                         <span id="nome_usuario"></span>
-                         </a>
+                    </a>
                     <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../perfil_usuario/index.html">Perfil</a>
+                        <a class="dropdown-item" href="../editar_usuario/">Editar Perfil</a>
                         <a class="dropdown-item" href="../configurações/index.html">Configurações</a>
                         <a class="dropdown-item" id="deslogar">Sair</a>
                     </div>
                 </li>
+            </div>
             </ul>
         </div>
     </nav>
     <section class="container-fluid h-auto" id="bg-section" style="padding: 5px;">
-        <article >
-            <div class="container h-100 bg-dark text-white" ">
+        <article>
+            <div class="container h-100 bg-dark text-white">
                 <h1>Formulário de cadastro de produto</h1>
                 <div class=" form-row">
-                <div class="form-group col-md-12">
-                    <label for="nome" style="float: left;">Nome do Produto</label>
-                    <input type="nome" class="form-control" id="nome" placeholder="Nome">
-                    <span class="badge badge-danger" id="erro-nome"></span>
-                </div>
-                <div class="form-group col-md-12 h-100">
-                    <!--<label for="descricao" style="float: left;">Descrição</label>
+                    <div class="form-group col-md-12">
+                        <label for="nome" style="float: left;">Nome do Produto</label>
+                        <input type="nome" class="form-control" id="nome" placeholder="Nome">
+                        <span class="badge badge-danger" id="erro-nome"></span>
+                    </div>
+                    <div class="form-group col-md-12 h-100">
+                        <!--<label for="descricao" style="float: left;">Descrição</label>
                     <textarea class="form-control" id="descricao" rows="3"></textarea>-->
-                    <label for="descricao" style="float: left;">Descrição</label><br><br>
-                    <div class="center">
-                        <div class="editor" contenteditable
-                            style="background-color: white; color: black; text-align: left;">
+                        <label for="descricao" style="float: left;">Descrição</label><br><br>
+                        <div class="center">
+                            <div class="editor" contenteditable
+                                style="background-color: white; color: black; text-align: left;">
 
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="center">
-                    </div>
-                    <div class="center">
-                        <section class="getcontent" style="display: none;">
-                        </section>
-                    </div>
+                        <div class="center">
+                        </div>
+                        <div class="center">
+                            <section class="getcontent" style="display: none;">
+                            </section>
+                        </div>
 
-                    <span class="badge badge-danger" id="erro-descricao"></span>
+                        <span class="badge badge-danger" id="erro-descricao"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-md-3" style="padding-left: 0;">
-                <label for="quantidade" style="float: left;">Quantidade</label>
-                <input type="number" class="form-control" id="quantidade" placeholder="Ex:  1, 400">
-                <span class="badge badge-danger" id="erro-quantidade"></span>
-            </div>
-            <div class="form-group col-md-3" style="padding-left: 0;">
-                <label for="valor" style="float: left;">Valor</label>
-                <input type="Number" class="form-control" id="valor" placeholder="Ex:  1.00, 400.00">
-                <span class="badge badge-danger" id="erro-valor"></span>
-            </div>
-            <div class="form-group col-md-4" style="padding-left: 0;">
-                <form method='post' action='' enctype="multipart/form-data"></form>
+                <div class="form-group col-md-3" style="padding-left: 0;">
+                    <label for="quantidade" style="float: left;">Quantidade</label>
+                    <input type="number" class="form-control" id="quantidade" placeholder="Ex:  1, 400">
+                    <span class="badge badge-danger" id="erro-quantidade"></span>
+                </div>
+                <div class="form-group col-md-3" style="padding-left: 0;">
+                    <label for="valor" style="float: left;">Valor</label>
+                    <input type="Number" class="form-control" id="valor" placeholder="Ex:  1.00, 400.00">
+                    <span class="badge badge-danger" id="erro-valor"></span>
+                </div>
+                <div class="form-group col-md-4" style="padding-left: 0;">
+                    <form method='post' action='' enctype="multipart/form-data"></form>
 
-                <label for="files" style="float: left;">
-                    Enviar imagens
-                </label>
-                <input type="file" id='files' name="files[]" multiple accept="image/*"><br>
-                <br>
-                <span class="badge badge-danger" id="erro-imagens"></span>
-            </div>
-            <input type="button" id="submit" value='Cadastrar' class="btn btn-primary" style="margin: 10px;">
-            </form>
-            <span id="span-sucesso"></span>
+                    <label for="files" style="float: left;">
+                        Enviar imagens
+                    </label>
+                    <input type="file" id='files' name="files[]" multiple accept="image/*"><br>
+                    <br>
+                    <span class="badge badge-danger" id="erro-imagens"></span>
+                </div>
+                <input type="button" id="submit" value='Cadastrar' class="btn btn-primary" style="margin: 10px;">
+                </form>
+                <span id="span-sucesso"></span>
         </article>
     </section>
     <footer>
@@ -155,4 +157,5 @@
         <script src="../../JS/cadastra_produto.js"></script>
         <script src="../../JS/menu.js"></script>
 </body>
+
 </html>

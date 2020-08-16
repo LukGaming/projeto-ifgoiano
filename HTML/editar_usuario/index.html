@@ -22,7 +22,7 @@
 
 <body>
     <div style="padding-bottom: 60px;">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light" id="bg-nav">
+        <nav class="navbar navbar-static-top navbar-expand-lg navbar-light " id="bg-nav">
             <a class="navbar-brand text-white" href="../home/index.html">Pagina Inicial</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,27 +35,29 @@
                                 class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Outro Link</a>
+                        <a class="nav-link text-white" href="../cadastrar_produto/index.html">Cadastrar Produtos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Outro Link</a>
-                    </li>
+    
                     <li class="nav-item dropdown ml-auto ">
+                        <a href="../login/index.html" id="deslogado">
+                            <button class="btn btn-primary">Logar-se</button>
+                        </a>
+                    <div id="logado">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
+    
                             <span id="nome_usuario"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../perfil_usuario/index.html">Perfil</a>
+                            <a class="dropdown-item" href="../editar_usuario/">Editar Perfil</a>
                             <a class="dropdown-item" href="../configurações/index.html">Configurações</a>
                             <a class="dropdown-item" id="deslogar">Sair</a>
                         </div>
                     </li>
+                </div>
                 </ul>
             </div>
         </nav>
-    </div>
 
     <section class="container-fluid h-auto" id="bg-section" style="padding: 5px;">
         <article>

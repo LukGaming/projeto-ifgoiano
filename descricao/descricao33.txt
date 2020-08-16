@@ -1,0 +1,14 @@
+
+
+                            <p><strong>Marca</strong><br>AMD</p>
+<p><strong>Modelo</strong><br>Ryzen 7 3700X</p>
+<p><strong>Soquete</strong><br>AM4</p>
+<p><strong>Núcleos</strong><br>8</p>
+<p><strong>Threads</strong><br>16</p>
+<p><strong>Frequência</strong><br>3.6 GHz</p>
+<p><strong>Frequência Max Turbo</strong><br>4,4 GHz</p>
+<p><strong>Cache</strong> <strong>L2</strong><br>4MB</p>
+<p><strong>Cache</strong> <strong>L3</strong><br>32MB</p>
+<p><strong>CMOS</strong><br>TSMC 7nm FinFET</p>
+<p><strong>TDP</strong><br>65W</p>
+<p><strong>Solução térmica</strong><br>Wraith Prism with RGB LED</p>

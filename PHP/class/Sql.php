@@ -2,7 +2,7 @@
 class Sql extends PDO{
     private $conn;
     public function  __construct(){
-        $this->conn = new PDO("mysql:dbname=loja_hardware;host=localhost","paulo","12345");
+        $this->conn = new PDO("mysql:dbname=loja_hardware;host=localhost;charset=utf8","paulo","12345");
     }
     public function query($rawQuery, $params = array()){
         $stmt = $this->conn->prepare($rawQuery);

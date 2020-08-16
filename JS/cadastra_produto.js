@@ -9,7 +9,7 @@ function verificaSessao() {
         window.location = "../login/index.html?cadastro_produto=1";
       }
       else {
-
+        
       }
     });
   }
@@ -38,6 +38,7 @@ function verificaSessao() {
     var count3 = 0;
     var count4 = 0;
     var count5 = 0;
+    console.log(encodeURIComponent(descricao));
     var span_sucesso = $("#span-sucesso");
     if (nome.val().length < 4) {
       erro_nome.html("Nome Invalido");
@@ -91,6 +92,7 @@ function verificaSessao() {
       form_data.append("qtd_disponivel", quantidade.val());
       form_data.append("descricao", descricao);
       form_data.append("valor", valor.val());
+      
       // AJAX request
       $.ajax({
         url: '../../PHP/index.php',

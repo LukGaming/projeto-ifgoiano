@@ -108,6 +108,8 @@ if(isset($_GET['getListofProducts'])){
 }
 //CADASTRANDO PRODUTO
 if(isset($_FILES['files']['name'])){//$countfiles = count($_FILES['files']['name'])
+    //$descricao = str_replace('"', "'", $_POST['descricao']);
+    //echo $descricao;
     $novo_produto = new Produto(
         $_POST['nome'],
         $_POST['qtd_disponivel'],
