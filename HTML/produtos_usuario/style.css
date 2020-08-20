@@ -1,0 +1,21 @@
+.each_product_of_user{
+    border: black 5px solid;
+    background-color: white;
+    margin-bottom: 5px;
+}
+.nome_descricao{
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: black;
+    display: inline;
+    align-self: flex-start;
+}
+.imagem_produto{
+    padding: 5px;    
+    object-fit: contain;
+    display: flex;
+}
+.btn_editar{
+    padding-top: 20px;
+}

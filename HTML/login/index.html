@@ -1,138 +1,81 @@
 <!doctype html>
 <html lang="pt-BR">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,
             shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Blog do Luk">
-    <meta name="keywords" content="hardware, software, games, programacao,
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="description" content="Blog do Luk">
+        <meta name="keywords" content="hardware, software, games, programacao,
             estudo, luk, blog do Luk">
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--Fontes-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <!--Css Externo local-->
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Login | Blog do Luk</title>
-</head>
-<body>
-   
-    <section class="container-fluid h-auto" id="bg-section">
-        <article>
-            <div class="container bg-artigo text-white text-justify">
-                <h2>Página de Login</h2>
-                <br>
-                <form>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
-                    <div class="form-group">
-                        <label for="senha">Senha:</label>
-                        <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
-                        
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary" id="login">Login</button>
-                    </div>                    
-                    <span class="badge badge-danger" id="erro"></span>
-                        <div class="d-flex justify-content-lefts">
-                            <button type="submit" class="btn btn-success "><a href="../cadastro/index.html" class="text-dark">Efetuar Cadastro</a></button>
-                        </div>                    
-                    </div> 
-        </article>
-    </section><nav class="navbar navbar-static-top navbar-expand-lg navbar-light " id="bg-nav">
-        <a class="navbar-brand text-white" href="../home/index.html">Pagina Inicial</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav w-100">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="../buscar_produto/index.html">Produtos <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="../cadastrar_produto/index.html">Cadastrar Produtos</a>
-                </li>
+        <link rel="shortcut icon" href="../images/favicon.ico"
+            type="image/x-icon">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous">
+        <!--Fontes-->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+            integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+            crossorigin="anonymous">
+        <!--Css Externo local-->
+        <link rel="stylesheet" href="../css/style.css">
+        <title>Login | Blog do Luk</title>
+    </head>
+    <body>
+        <section class="container-fluid h-auto" id="bg-section">
+            <article>
+                <div class="container bg-artigo text-white text-justify">
+                    <h2>Página de Login</h2>
+                    <br>
+                    <form>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email"
+                                placeholder="Email">
+                            <div class="form-group">
+                                <label for="senha">Senha:</label>
+                                <input type="password" class="form-control"
+                                    id="senha" placeholder="Digite sua senha">
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary"
+                                    id="login">Login</button>
+                            </div>
+                            <span class="badge badge-danger" id="erro"></span>
+                            <div class="d-flex justify-content-lefts">
+                                <button type="submit" class="btn btn-success"><a
+                                        href="../cadastro/index.html"
+                                        class="text-dark">Efetuar Cadastro</a></button>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+                <div id="suporte-online" onclick="location.href=
+                    '../contato_suporte/index.html'"> &reg; Suporte Online</div>
+                <!-- JavaScript opcional -->
+                <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                    crossorigin="anonymous"></script>
+                <script
+                    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                    crossorigin="anonymous"></script>
+                <script
+                    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                    crossorigin="anonymous"></script>
+                <script
+                    src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+                <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+                <!--JS DA DATA-->
+                <script
+                    src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+                <script src="../../JS/Login.Js"></script>
+            </body>
 
-                <li class="nav-item dropdown ml-auto ">
-                    <a href="../login/index.html" id="deslogado">
-                        <button class="btn btn-primary">Logar-se</button>
-                    </a>
-                <div id="logado">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                        <span id="nome_usuario"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../editar_usuario/">Editar Perfil</a>
-                        <a class="dropdown-item" href="../configurações/index.html">Configurações</a>
-                        <a class="dropdown-item" id="deslogar">Sair</a>
-                    </div>
-                </li>
-            </div>
-            </ul>
-        </div>
-    </nav>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light " id="bg-nav">
-        <a class="navbar-brand text-white" href="../home/index.html">Pagina Inicial</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav w-100">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="../buscar_produto/index.html">Produtos <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Outro Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Outro Link</a>
-                </li>
-                <li class="nav-item dropdown ml-auto ">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                       
-                        <span id="nome_usuario"></span>
-                         </a>
-                    <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../perfil_usuario/index.html">Perfil</a>
-                        <a class="dropdown-item" href="../configurações/index.html">Configurações</a>
-                        <a class="dropdown-item" id="deslogar">Sair</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>    
-    <div id="suporte-online" onclick="location.href=
-            '../contato_suporte/index.html'"> &reg; Suporte Online</div>
-
-    <!-- JavaScript opcional -->
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
-    <!--JS DA DATA-->
-    <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-    <script src="../../JS/Login.Js"></script>
-</body>
-
-</html>
+        </html>

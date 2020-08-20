@@ -1,54 +1,9 @@
 <?php
 require_once("config.php");
 session_start();
-///Mostra um usuário especifico pelo Id.
-/*$mostra_usuario = new Usuario();
-$mostra_usuario->getUserById(1);
-echo $mostra_usuario;*/
-//Mostra todos os usuarios
-//echo json_encode(Usuario::ListALlUsers());
-//Procura um usário a partir do nome do usuário
-//echo json_encode(Usuario::searchUserByName("ju"));
-//Traz todos os dados do usuário a partir de uma autenticacao de email e senha
-//Criando Usuário com a senha criptograda
-/*$senha = "123456789";
-$senha_criptograda = password_hash($senha, PASSWORD_DEFAULT);
-$insert_user  = new Usuario("MARIA DE FATIMA FERREIRA MENDES","1962-05-06","fatimatiana_@hotmail.com",$senha_criptograda);
-$insert_user->insert();
 
-//Verifica se a senha do usuário
-$mostra_usuario = new Usuario();
-$mostra_usuario->getUserById(4);
-if(password_verify($senha, $mostra_usuario->getSenha())){
-    echo "sessao inicializada";
-}*/
-if(isset($_POST['deslogando'])){
-    logout();
-    if(!isset($_SESSION['user_data'])){
-        $resultado = array(
-            "resultado"=>1
-        );
-    }
-    else{
-        $resultado = array(
-            "resultado"=>0
-        );
-    }
-    echo json_encode($resultado);
-}
-if(isset($_POST['cadastro'])){
-    //Primeiro verificaremos se existe algum email
-    if(count(Usuario::verificaEmail($_POST['email'])) == 1){
-        echo json_encode(1);
-    }
-    else{
-        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-        $new_user = new Usuario($_POST['nome'], $_POST['data_nascimento'], $_POST['email'], $senha);
-        $new_user->insert();
-        echo json_encode(0);
-    }
-    
-}
+
+//////USUARIO
 if(isset($_POST['login'])){
     $sql = new Sql();
     $email = $_POST['email'];
@@ -72,7 +27,118 @@ if(isset($_POST['login'])){
         }
     }
 }
+//DESLIGANDO USUÁRIO
+if(isset($_POST['deslogando'])){
+    logout();
+    if(!isset($_SESSION['user_data'])){
+        $resultado = array(
+            "resultado"=>1
+        );
+    }
+    else{
+        $resultado = array(
+            "resultado"=>0
+        );
+    }
+    echo json_encode($resultado);
+}
+//CADASTRANDO USUÁRIO
+if(isset($_POST['cadastro'])){
+    //Primeiro verificaremos se existe algum email
+    if(count(Usuario::verificaEmail($_POST['email'])) == 1){
+        echo json_encode(1);
+    }
+    else{
+        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+        $new_user = new Usuario($_POST['nome'], $_POST['data_nascimento'], $_POST['email'], $senha);
+        $new_user->insert();
+        echo json_encode(0);
+    }
+    
+}
+//Verificando se usuário está logado
+if(isset($_POST["verifica_sessao"])){
+    echo json_encode(verify_user_session());
+}
+//Pegando dados do usuário para ser editado
+if(isset($_POST['request_user_data'])){
+    if(isset($_SESSION['user_data'])){   
+    $sql = new Sql();
+    $consulta = $sql->select("select nome, email, data_nascimento from usuario WHERE id_usuario = :ID_USUARIO",
+    array(
+        ":ID_USUARIO"=>$_SESSION['user_data']['id']
+    ));
+    echo json_encode($consulta[0]);
+    }
+    else{
+        echo json_encode(array(
+            "vazio"=>0
+        ));
+    }
+}
+//EDITANDO USUÁRIO
+if(isset($_POST['editar_usuario'])){
+    if(isset($_SESSION['user_data'])){
+        if($_POST['editar_usuario'] == 0){//Se for zero editaremos somente Nome e data de nascimento
+            $sql = new Sql();
+            $consulta = $sql->select("SELECT nome, data_nascimento FROM usuario WHERE id_usuario = :ID_USUARIO",
+            array(
+                ":ID_USUARIO"=>$_SESSION['user_data']['id']
+            ));
+            if($consulta[0]['nome'] != $_POST['nome'] ||  $consulta[0]['data_nascimento'] != $_POST['data_nascimento']){
+                $sql->query("UPDATE usuario SET nome = :NOME, data_nascimento = :DATA_NASCIMENTO WHERE id_usuario = :ID_USUARIO"
+                ,array(
+                    ":NOME"=>$_POST['nome'],
+                    ":DATA_NASCIMENTO"=>$_POST['data_nascimento'],
+                    ":ID_USUARIO"=>$_SESSION['user_data']['id']
+                ));
+                $_SESSION['user_data']['nome'] = $_POST['nome'];
+                echo json_encode(array(
+                    "edicao"=>1,
+                    "alterar_nome"=>$_SESSION['user_data']['nome']
+                ));
+            }
+            else{
+                echo json_encode(array(
+                    "edicao"=>0
+                ));
+            }
+        }
+        else{//Se nao for zero editaremos a senha do usuário também
+            $sql = new Sql();
+            $consulta = $sql->select("SELECT * FROM usuario WHERE id_usuario = :ID_USUARIO", array(
+                ":ID_USUARIO"=>$_SESSION['user_data']['id']
+            ));
+            if(password_verify($_POST['old_senha'], $consulta[0]['senha'])){
+                $sql->query("UPDATE usuario SET nome = :NOME, data_nascimento = :DATA_NASCIMENTO, senha = :SENHA WHERE id_usuario = :ID_USUARIO"
+                ,array(
+                    ":NOME"=>$_POST['nome'],
+                    ":DATA_NASCIMENTO"=>$_POST['data_nascimento'],
+                    ":SENHA"=>password_hash($_POST['new_senha'], PASSWORD_DEFAULT),
+                    ":ID_USUARIO"=>$_SESSION['user_data']['id']
+                ));
+                $_SESSION['user_data']['nome'] = $_POST['nome'];
+                echo json_encode(array(
+                    "edicao"=>1,
+                    "alterar_nome"=>$_SESSION['user_data']['nome']
+                ));
+            }            
+            else{
+                echo json_encode(array(
+                    "edicao"=>0
+                ));
+            }
+        }
+    }
+    else{
+        echo json_encode(array(
+            "vazio"=>0
+        ));
+    }
+}
 
+
+/////////////PRODUTOS/////////
 //Listando todos os produtos
 if(isset($_GET['getListofProducts'])){
     $getListOfProducts = $_GET['getListofProducts'];
@@ -171,7 +237,7 @@ if(isset($_FILES['files']['name'])){//$countfiles = count($_FILES['files']['name
     $files_arr['last_id'] = $lastId;
     echo json_encode($files_arr);
 }
-
+//Mostrando somente um produto
 if(isset($_GET['getoneproduct'])){
     $buscar_produto_id = new Produto();
     $retorno = $buscar_produto_id->getProductById($_GET['id_produto']);
@@ -197,28 +263,66 @@ if(isset($_GET['getoneproduct'])){
         echo json_encode($retorno);
     }
 }
-
-//Buscando um Produto pelo nome ou Pela descricao do produto
-/*$search_produto = new Produto();
-echo json_encode($search_produto->searchProduto("produto"));*/
-//Alterando os dados do produto UPDATE
-/*$update_produto = new Produto();
-$update_produto->getProductById(7);
-echo $update_produto;
-$update_produto->update("New Name","8","new description" , "999","1");
-echo $update_produto;*/
-//Criando um Produto***************** O TIPO DO VALOR DO PRODUTO DEVE SER FLOAT
-
-//Deletando um produto
-/*$produto = new Produto();
-$produto->getProductById(22);
-$produto->delete();*/
-
-//Verificando se usuário está logado
-if(isset($_POST["verifica_sessao"])){
-    echo json_encode(verify_user_session());
+//Editando Produto
+//Mostrando dados do produto a partir do produto que o usuário criou
+if(isset($_POST['produtos_usuario'])){
+    $sql = new Sql();
+    $consulta = $sql->select("SELECT * FROM produto WHERE id_vendedor = :ID_VENDEDOR", array(
+        ":ID_VENDEDOR"=>$_SESSION['user_data']['id']
+    ));
+    for($i=0; $i<count($consulta); $i++){
+        $descricao = file_get_contents("../descricao/descricao".$consulta[$i]['id_produto'].".txt");
+        $consulta[$i]['descricao'] = $descricao;
+    }
+    if(count($consulta) > 0){
+        echo json_encode($consulta);
+    }
+    else{
+        echo json_encode(array(
+            "vazio"=>0
+        ));
+    }    
 }
-//Funções para sessões
+//Mostrando os dados do produto para o usuário  poder digitar
+if(isset($_POST['editar_produto'])){
+    if(!$_SESSION['user_data']){
+        echo json_encode(array(
+            "erro"=>3
+        ));
+    }
+    else{    
+        $sql = new Sql();
+        $consulta = $sql->select("SELECT * FROM produto WHERE id_produto = :ID_PRODUTO",array(
+            ":ID_PRODUTO"=>$_POST['id_produto']
+        ));
+        if(count($consulta) > 0){
+            if($consulta[0]['id_vendedor'] == $_SESSION['user_data']['id']){
+                $descricao = file_get_contents("../descricao/descricao".$consulta[0]['id_produto'].".txt");
+                $consulta[0]['descricao'] = $descricao;  
+                echo json_encode($consulta[0]);
+            }
+            else{
+                echo json_encode(array(
+                    "erro"=>2
+                ));
+            }
+        }
+        else{
+            echo json_encode(array(
+                "erro"=>1
+            ));
+        }
+    }
+     
+}
+//Salvando Edições do produto
+if(isset($_POST['editar_produto=1'])){
+    $sql = new Sql();
+    
+}
+
+
+//FUNÇÕES PARA SESSÃO
 function session_put_user_data($id_usuario,$nome_usuario,$email_usuario){          
     $usuario = array(
         "id"=>$id_usuario,
@@ -242,77 +346,4 @@ function verify_user_session(){
 function logout(){
     unset($_SESSION['user_data']);
 }
-if(isset($_POST['request_user_data'])){
-    if(isset($_SESSION['user_data'])){   
-    $sql = new Sql();
-    $consulta = $sql->select("select nome, email, data_nascimento from usuario WHERE id_usuario = :ID_USUARIO",
-    array(
-        ":ID_USUARIO"=>$_SESSION['user_data']['id']
-    ));
-    echo json_encode($consulta[0]);
-    }
-    else{
-        echo json_encode(array(
-            "vazio"=>0
-        ));
-    }
-}
-if(isset($_POST['editar_usuario'])){
-    if(isset($_SESSION['user_data'])){
-        if($_POST['editar_usuario'] == 0){//Se for zero editaremos somente Nome e data de nascimento
-            $sql = new Sql();
-            $consulta = $sql->select("SELECT nome, data_nascimento FROM usuario WHERE id_usuario = :ID_USUARIO",
-            array(
-                ":ID_USUARIO"=>$_SESSION['user_data']['id']
-            ));
-            if($consulta[0]['nome'] != $_POST['nome'] ||  $consulta[0]['data_nascimento'] != $_POST['data_nascimento']){
-                $sql->query("UPDATE usuario SET nome = :NOME, data_nascimento = :DATA_NASCIMENTO WHERE id_usuario = :ID_USUARIO"
-                ,array(
-                    ":NOME"=>$_POST['nome'],
-                    ":DATA_NASCIMENTO"=>$_POST['data_nascimento'],
-                    ":ID_USUARIO"=>$_SESSION['user_data']['id']
-                ));
-                $_SESSION['user_data']['nome'] = $_POST['nome'];
-                echo json_encode(array(
-                    "edicao"=>1,
-                    "alterar_nome"=>$_SESSION['user_data']['nome']
-                ));
-            }
-            else{
-                echo json_encode(array(
-                    "edicao"=>0
-                ));
-            }
-        }
-        else{//Se nao for zero editaremos a senha do usuário também
-            $sql = new Sql();
-            $consulta = $sql->select("SELECT * FROM usuario WHERE id_usuario = :ID_USUARIO", array(
-                ":ID_USUARIO"=>$_SESSION['user_data']['id']
-            ));
-            if(password_verify($_POST['old_senha'], $consulta[0]['senha'])){
-                $sql->query("UPDATE usuario SET nome = :NOME, data_nascimento = :DATA_NASCIMENTO, senha = :SENHA WHERE id_usuario = :ID_USUARIO"
-                ,array(
-                    ":NOME"=>$_POST['nome'],
-                    ":DATA_NASCIMENTO"=>$_POST['data_nascimento'],
-                    ":SENHA"=>password_hash($_POST['new_senha'], PASSWORD_DEFAULT),
-                    ":ID_USUARIO"=>$_SESSION['user_data']['id']
-                ));
-                $_SESSION['user_data']['nome'] = $_POST['nome'];
-                echo json_encode(array(
-                    "edicao"=>1,
-                    "alterar_nome"=>$_SESSION['user_data']['nome']
-                ));
-            }            
-            else{
-                echo json_encode(array(
-                    "edicao"=>0
-                ));
-            }
-        }
-    }
-    else{
-        echo json_encode(array(
-            "vazio"=>0
-        ));
-    }
-}
+

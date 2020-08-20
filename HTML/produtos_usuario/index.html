@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pt-BR">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="description" content="Blog do Luk">
+        <meta name="keywords" content="hardware, software, games, programacao,
+            estudo, luk, blog do Luk">
+        <link rel="shortcut icon" href="../images/favicon.ico"
+            type="image/x-icon">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous">
+        <!--Fontes-->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+            integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+            crossorigin="anonymous">
+        <!--Css Externo local-->
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="style.css">
+        <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .editor {
+            width: 100%;
+            height: 100%;
+            margin: 0rem;
+            padding: 1rem;
+            font-size: 1.2rem;
+            box-shadow: 0 .1rem .4rem black;
+            border: 1px solid rgb(22, 16, 16);
+            overflow-y: auto;
+        }
+    </style>
+        <title>Home | Blog do Luk</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-static-top navbar-expand-lg navbar-light"
+            id="bg-nav">
+            <a class="navbar-brand text-white" href="../home/index.html">Pagina
+                Inicial</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav w-100">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white"
+                            href="../buscar_produto/index.html">Produtos <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white"
+                            href="../cadastrar_produto/index.html">Cadastrar
+                            Produtos</a>
+                    </li>
+
+                    <li class="nav-item dropdown ml-auto">
+                        <a href="../login/index.html" id="deslogado">
+                            <button class="btn btn-primary">Logar-se</button>
+                        </a>
+                        <div id="logado">
+                            <a class="nav-link dropdown-toggle text-white"
+                                href="#" id="navbarDropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+
+                                <span id="nome_usuario"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item"
+                                    href="../editar_usuario/">Editar Perfil</a>
+                                <a class="dropdown-item"
+                                    href="../configurações/index.html">Configurações</a>
+                                <a class="dropdown-item" id="deslogar">Sair</a>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+        <section class="container-fluid h-auto" id="bg-section"
+            style="padding:5px;">
+            <article>
+                <div class="container h-100 bg-dark text-white">                    
+                    <h1 class="center">Seus produtos</h1>
+                    <div id="produtos">
+                    
+                    </div>
+
+                    
+                </div>
+
+            </article>
+        </section>
+        <footer>
+            <!--<div id="bg-footer" class="h-auto text-white">
+            Lorem ipsum dolor sit amet, suas euismod eam cu, cu maiorum lobortis mea. Cu offendit scaevola inimicus vim,
+            ea sed purto
+            error everti. Volumus eligendi salutatus his ea, diam iudico propriae pro ex. Liber ubique dolorem te quo.
+            Aeterno
+            conceptam ad mea.
+        </div>
+    </footer>-->
+            <div id="suporte-online" onclick="location.href=
+                '../contato_suporte/index.html'"> &reg; Suporte Online</div>
+            <!-- JavaScript opcional -->
+            <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+            <script
+                src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+            <script
+                src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+            <script
+                src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+            <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script src="../../JS/produtos_usuario.js"></script>
+            <script src="../../JS/menu.js"></script>
+        </body>
+
+    </html>
