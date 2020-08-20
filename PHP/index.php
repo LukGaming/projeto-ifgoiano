@@ -316,9 +316,58 @@ if(isset($_POST['editar_produto'])){
      
 }
 //Salvando Edições do produto
-if(isset($_POST['editar_produto=1'])){
+if(isset($_POST['editar_produto1'])){
     $sql = new Sql();
-    
+    $dados_antigos_do_banco = $sql->select("SELECT * FROM produto WHERE id_Produto = :ID_PRODUTO", array(
+        ":ID_PRODUTO"=>$_POST['id_produto']
+    ));
+    $caminho_descricao = "../descricao/descricao".$_POST['id_produto'].".txt";
+    $descricao_antiga = file_get_contents($caminho_descricao);
+    $cont = 0;
+    if( $descricao_antiga  != $_POST['descricao'])
+    {
+        unlink($caminho_descricao);//Deletando arquivo da descricao antigo
+        file_put_contents($caminho_descricao, $_POST['descricao']);//Criando a nova descricao
+        $cont++;
+    }
+    if(
+        $_POST['nome_produto'] != $dados_antigos_do_banco[0]['nome_produto'] || 
+        $_POST['qtd_disponivel'] != $dados_antigos_do_banco[0]['qtd_disponivel']||
+        $_POST['valor_produto'] != $dados_antigos_do_banco[0]['valor_produto']
+    )
+    {
+        $sql = new Sql();
+        $sql->query("UPDATE produto SET
+        nome_produto = :NOME_PRODUTO,
+        qtd_disponivel = :QTD_DISPONIVEL,
+        valor_produto = :VALOR_PRODUTO
+        WHERE id_produto = :ID_PRODUTO",
+        array(
+            ":NOME_PRODUTO"=>$_POST['nome_produto'],
+            ":QTD_DISPONIVEL"=>$_POST['qtd_disponivel'],
+            ":VALOR_PRODUTO"=>$_POST['valor_produto'],
+            ":ID_PRODUTO"=>$_POST['id_produto'],
+        ));
+        $cont++;      
+    } 
+    switch ($cont) {
+        case 0:
+            echo json_encode(array(
+                "vazio"=>0
+            ));
+            break;  
+        case 1:
+            echo json_encode(array(
+                "vazio"=>1
+            ));
+            break; 
+        case 2:
+            echo json_encode(array(
+                "vazio"=>1
+            ));
+            break;          
+    }
+
 }
 
 

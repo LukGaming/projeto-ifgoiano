@@ -22,6 +22,7 @@ var $erro_nome = $("#erro-nome");
 var $erro_quantidade = $("#erro-quantidade");
 var $erro_descricao = $("#erro-descricao");
 var $erro_valor = $("#erro-valor");
+var $span_sucesso = $("#span-sucesso");
 $(document).ready(buscaDadosProdutoParaEditar);
 function buscaDadosProdutoParaEditar() {
   $.post(
@@ -90,22 +91,24 @@ function validarEdicoes() {
   var somaConta = count1 + count2 + count3 + count4;
   if(somaConta == 0){
     SalvarEdicoes();
-    console.log($nome_produto.val()+$quantidade.val()+$valor.val()+editorContent.innerHTML);
   }
 }
   function SalvarEdicoes() {
-    alert("funcao chamada");
     $.post("../../PHP/index.php",
-      "editar_produto=1"
+      "editar_produto1=1"
       + "&nome_produto=" + $nome_produto.val()
-      + "&quantidade=" + $quantidade.val()
-      + "&valor=" + $valor.val()
-      + "&descricao=" + editorContent.innerHTML,
+      + "&qtd_disponivel=" + $quantidade.val()
+      + "&valor_produto=" + $valor.val()
+      + "&descricao=" + editorContent.innerHTML
+      + "&id_produto="+id_produto,
       function (retorno) {
-        /*result = JSON.parse(retorno);
-        if (result.vazio == 0) {
-
-        }*/
+        result = JSON.parse(retorno);
+        if(result.vazio == 0){
+          $span_sucesso.html("Nenhuma Alteração Efetuada");
+        }
+        else{
+          $span_sucesso.html("Alteração efetuada com Sucesso");
+        }
 
       }
     );
