@@ -369,7 +369,29 @@ if(isset($_POST['editar_produto1'])){
     }
 
 }
-
+//Deletando um produto literalmente do banco de dados
+if(isset($_POST['deletar_produto'])){
+    $sql = new Sql();
+    $senha_banco = select("SELECT senha from usuario WHERE id_usuario = :ID_USUARIO",
+        array(
+            ":ID_USUARIO"=>$_SESSION['user_data']['id']
+        ));
+    if(password_verify($senha_banco, $_POST['senha'])){
+        $sql = new Sql();
+        $sql->query("DELETE from produto WHERE id_produto = :ID_PRODUTO", array(
+            ":ID_PRODUTO"=>$_POST['id_produto'],
+        ));
+        unlink("../descricao/descricao".$_POST['id_produto'].".txt");
+        echo json_encode(array(
+            "vazio"=>1
+        ));
+    }
+    else{
+        echo json_encode(array(
+            "vazio"=>1
+        ));
+    }
+}
 
 //FUNÇÕES PARA SESSÃO
 function session_put_user_data($id_usuario,$nome_usuario,$email_usuario){          
@@ -395,4 +417,3 @@ function verify_user_session(){
 function logout(){
     unset($_SESSION['user_data']);
 }
-

@@ -2,4 +2,4 @@
  Os processadores da INTEL da linha "F" não possuem vídeo integrado, 
 tornando-se então obrigatório o uso de uma placa de vídeo no slot PCI-E,
  uma vez que as saídas de vídeo onboard da placa-mãe não irão funcionar.</span>
-<p>
+<p></p>

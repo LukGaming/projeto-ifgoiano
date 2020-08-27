@@ -23,6 +23,8 @@ var $erro_quantidade = $("#erro-quantidade");
 var $erro_descricao = $("#erro-descricao");
 var $erro_valor = $("#erro-valor");
 var $span_sucesso = $("#span-sucesso");
+var $div_deletar_produto = $("#deletar_produto");
+//$div_deletar_produto.hide();
 $(document).ready(buscaDadosProdutoParaEditar);
 function buscaDadosProdutoParaEditar() {
   $.post(
@@ -49,7 +51,6 @@ function buscaDadosProdutoParaEditar() {
 }
 
 $($btnSalvar).click(validarEdicoes);
-
 function validarEdicoes() {
   var count1 = 0;
   var count2 = 0;
@@ -93,7 +94,10 @@ function validarEdicoes() {
     SalvarEdicoes();
   }
 }
-  function SalvarEdicoes() {
+function deletarProduto(){
+
+}
+function SalvarEdicoes() {
     $.post("../../PHP/index.php",
       "editar_produto1=1"
       + "&nome_produto=" + $nome_produto.val()
